@@ -20,6 +20,14 @@
         remote services (rmm_remote_tck) in the reactor. Guide for the operator: README.md.
     </description>
 
+    <!-- The template is MIT-0 (LICENSE), not the Apache-2.0 of the parent. Put your own license here. -->
+    <licenses>
+        <license>
+            <name>MIT-0</name>
+            <url>https://opensource.org/license/mit-0</url>
+        </license>
+    </licenses>
+
     <!--
         The main code has NO dependency: only the JDK (com.sun.net.httpserver,
         javax.net.ssl, java.security). The dependencies below are for the tests only.
