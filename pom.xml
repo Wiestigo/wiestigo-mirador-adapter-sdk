@@ -41,6 +41,19 @@
         against the contract.
     </description>
 
+    <organization>
+        <name>Wiestigo UG (haftungsbeschränkt)</name>
+    </organization>
+
+    <!-- Inherited by every module. The templates are MIT-0 (their own LICENSE files). -->
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <modules>
         <!-- The transfer model and the mapping (com.io_elements) -->
         <module>rmm_adapter_model</module>
