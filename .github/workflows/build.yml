@@ -10,9 +10,13 @@ on:
       - main
   pull_request:
   workflow_dispatch:
+  # The release runs these tests on its commit before it publishes
+  workflow_call:
 
+# Per workflow that runs it: inside a release, github.workflow is the release, so its tests and a
+# build of the same branch do not cancel each other
 concurrency:
-  group: build-${{ github.ref }}
+  group: build-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
