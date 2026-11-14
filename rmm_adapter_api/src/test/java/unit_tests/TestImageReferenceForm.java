@@ -36,7 +36,7 @@ class TestImageReferenceForm {
         }
         String[] templates = {
                 "/a//{file}", "/a/../{file}", "/a/%2e/{file}", "/api/{number}/{file}", "/API/x/{file}",
-                "/{ctx}/api/{file}", "/Api/{file}", "/{ctx}/{file}", "/{ctx}/{ctx}/a/{file}",
+                "/{ctx}/actuator/{file}", "/internal/{file}", "/{ctx}/{file}", "/{ctx}/{ctx}/a/{file}",
                 "/a/{file}/b", "a/{file}", "/a/{file}/", "/a\\b/{file}", "/{count}/a", "/a b/{file}", "/.a/{file}"};
         for (String template : templates) {
             assertThrows(IllegalArgumentException.class, () -> ImageReferenceForm.pathTemplate(template), template);
@@ -93,7 +93,7 @@ class TestImageReferenceForm {
                 "attachment:dir/x.png", "attachment:a b.png", "attachment:report.pdf", "attachment:",
                 "attachment:%2e%2e.png", "/attachment/17/%2e%2e%2fapi.png", "/attachment/x/a.png",
                 "/attachment/17", "//evil.example/attachment/1/a.png", "/api/attachment/1/a.png",
-                "/x/../api/attachment/1/a.png", "/a/b/attachment/1/a.png", "/API/attachment/1/a.png",
+                "/x/../api/attachment/1/a.png", "/a/b/attachment/1/a.png", "/actuator/attachment/1/a.png",
                 "/attachment/1/a.png?x=1", "/attachment/1/.png", "https://jama.example/attachment/1/a.png"};
         for (String reference : refused) {
             assertTrue(ATTACHMENT.admit(reference).isEmpty() && WEB_ATTACHMENT.admit(reference).isEmpty(),

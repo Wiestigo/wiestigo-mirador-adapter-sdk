@@ -31,8 +31,8 @@ import java.util.regex.Pattern;
  *
  * <p><b>Prohibited in every form</b>, both in a declaration and in a checked
  * value: the schemes in {@link #BANNED_SCHEMES}; {@code //}, {@code ..} and
- * {@code %} in path forms; the reserved segments of the host
- * ({@link #RMM_ROUTES}, that is {@code api}) as a segment. A template needs at least one fixed
+ * {@code %} in path forms; {@code /api/} and the routes of the host
+ * ({@link #RMM_ROUTES}) as a segment. A template needs at least one fixed
  * segment. A form outside the grammar cannot be constructed
  * ({@link IllegalArgumentException}), so an adapter that declares one fails at
  * registration.
@@ -60,11 +60,12 @@ public record ImageReferenceForm(Kind kind, String value) {
             "http", "https", "data", "javascript", "vbscript", "file", "blob");
 
     /**
-     * Reserved path segments of the host: {@code api}. No segment of a path
-     * form and no value for {@code {ctx}} may have one of these names
-     * (case-insensitive).
+     * The paths under which a service answers on the host's origin (proxy
+     * routes), plus {@code api}. No segment of a path form and no value for
+     * {@code {ctx}} may have one of these names (case-insensitive).
      */
-    public static final Set<String> RMM_ROUTES = Set.of("api");
+    public static final Set<String> RMM_ROUTES = Set.of(
+            "api", "actuator", "internal", "ops", "intelligence", "document", "identity", "_auth", "_health");
 
     /** Placeholder of a path template: digits. */
     public static final String NUMBER = "{number}";
@@ -165,7 +166,7 @@ public record ImageReferenceForm(Kind kind, String value) {
                         problems.add("the segment <" + segment + "> is neither a placeholder ({number}, {file},"
                                 + " {ctx}) nor a fixed segment of letters, digits, '.', '_', '~' and '-'");
                     } else if (RMM_ROUTES.contains(segment.toLowerCase(Locale.ROOT))) {
-                        problems.add("the segment <" + segment + "> is reserved by Mirador");
+                        problems.add("the segment <" + segment + "> is a route of Mirador");
                     } else {
                         fixed++;
                     }
