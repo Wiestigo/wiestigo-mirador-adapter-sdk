@@ -1,0 +1,6 @@
+id;type;name;description
+REQ-1;Requirement;Brake;The vehicle must be able to brake.
+REQ-2;Requirement;Steering;The vehicle must be steerable.
+REQ-3;Requirement;Drive;The vehicle must be able to pull away.
+REQ-4;Information;Side note;For context only.
+REQ-5;Requirement;Lighting;The vehicle must have lights.

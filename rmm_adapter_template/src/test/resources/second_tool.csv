@@ -1,0 +1,4 @@
+id;type;name;description
+HR-1;Requirement;Leave;Leave requests are submitted digitally.
+HR-2;Requirement;Time tracking;Working hours are recorded daily.
+HR-3;Information;Note;Applies to all sites.

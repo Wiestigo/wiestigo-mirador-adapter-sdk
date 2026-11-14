@@ -1,0 +1,19 @@
+{
+  "_comment": "Mapping template of the CSV adapter: translates the terms of the tool into Mirador terms. It ships in the plugin jar under META-INF/rmm-adapter/mapping-template.json, the only place the host reads it from. Every new connection gets a copy, which the tenant maintains in the administration. A file in the configuration directory does not apply to a plugin.",
+  "artifactTypeField": "Type",
+  "typeMappings": {
+    "csvtoolToRmm": {
+      "Requirement": "System Requirement",
+      "Information": "Information"
+    }
+  },
+  "attributeNameMappings": {
+    "csvtoolToRmm": {
+      "Name": "Name",
+      "Description": "Description"
+    }
+  },
+  "relationshipMappings": {
+    "csvtoolToRmm": {}
+  }
+}

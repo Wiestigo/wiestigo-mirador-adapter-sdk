@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wiestigo.mirador</groupId>
+        <artifactId>rmm_adapter_sdk</artifactId>
+        <version>1.1.0</version>
+    </parent>
+
+    <artifactId>rmm_remote_tck</artifactId>
+    <packaging>jar</packaging>
+
+    <name>rmm_remote_tck</name>
+    <description>
+        Technology Compatibility Kit for remote adapter services: a test harness over real
+        HTTP with which the author of a remote service (in any language) checks that the
+        service follows protocol version 4: it requires a client certificate, checks the
+        header X-RMM-Binding against the certificate, keeps data and state apart per
+        binding, serves a version 4 descriptor and answers writes by the rules of the
+        outcome per element. Needs only the JDK and Jackson, no Mirador installation.
+        Protocol: docs/REMOTE_PROTOCOL.md.
+    </description>
+
+    <dependencies>
+        <!-- The answers of the service (JSON); version from the Spring Boot BOM -->
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <!--
+            Scope provided on purpose, as in the adapter TCK (rmm_adapter_tck): the abstract
+            RemoteServiceContractTest IS JUnit code that the author of the service extends in
+            test scope; the project of the service decides the JUnit version.
+        -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+</project>

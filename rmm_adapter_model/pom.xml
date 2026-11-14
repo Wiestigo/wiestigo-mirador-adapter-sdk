@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wiestigo.mirador</groupId>
+        <artifactId>rmm_adapter_sdk</artifactId>
+        <version>1.1.0</version>
+    </parent>
+
+    <artifactId>rmm_adapter_model</artifactId>
+    <packaging>jar</packaging>
+
+    <name>rmm_adapter_model</name>
+    <description>
+        The tool-neutral transfer model of the adapter contract (package com.io_elements): the
+        Element* classes with which an adapter passes artifacts, relationships, comments and
+        attachments in both directions, together with their typed fields and identifiers. Part of
+        the contract: the host shares this package with every plugin through the class loader of
+        the contract.
+
+        Also the mapping (io_mapping: IoMapping and the reader of the mapping file,
+        IoMappingJsonReader): the TCK reads the mapping template of an adapter with exactly the
+        reader that the host uses later.
+
+        A module of its own, so that the contract (rmm_adapter_api) brings nothing of the host
+        along.
+    </description>
+
+    <dependencies>
+        <!--
+            ElementFieldJson carries its value as a JsonNode, and the reader of the mapping file
+            reads JSON (Jackson 3); the version comes from the Spring Boot BOM. A plugin does not
+            see the host's Jackson and sets the value of a JSON field as text.
+        -->
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <!-- Compile time only (getters, setters) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <!-- TESTING -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

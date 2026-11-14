@@ -1,0 +1,60 @@
+name: Release
+
+# Publishes the SDK artifacts to the GitHub Packages of this repository: the parent module with the zip
+# of the templates, the transfer model, the contract, the Spring facade and both TCKs, each with sources.
+# The templates themselves are built and tested but not published: they are projects to copy (in the
+# zip), not libraries.
+#
+# Runs manually or on a tag v<version>. The version is set in pom.xml; GitHub Packages does not allow
+# overwriting a published version (409), so raise the version for a new release.
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # On JDK 17: the artifacts are then certain to be Java 17, even if a module lost its release setting
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'corretto'
+        cache: maven
+        server-id: github
+        server-username: GITHUB_ACTOR
+        server-password: GITHUB_TOKEN
+
+    - name: The tag names the version of the build
+      if: startsWith(github.ref, 'refs/tags/v')
+      run: |
+        version=$(mvn -B -q -N help:evaluate -Dexpression=project.version -DforceStdout)
+        if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+          echo "tag $GITHUB_REF_NAME does not match the version $version in pom.xml" >&2
+          exit 1
+        fi
+
+    # Build and test everything first, including the templates; upload only after that
+    - name: Build and test
+      run: mvn -B verify
+
+    - name: Publish to GitHub Packages
+      run: mvn -B deploy -DskipTests -pl '!rmm_adapter_template,!rmm_remote_service_template'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wiestigo.mirador</groupId>
+        <artifactId>rmm_adapter_sdk</artifactId>
+        <version>1.1.0</version>
+    </parent>
+
+    <artifactId>rmm_adapter_http_spring</artifactId>
+    <packaging>jar</packaging>
+
+    <name>rmm_adapter_http_spring</name>
+    <description>
+        The Spring facade over the host's HTTP path: a Spring ClientHttpConnector on top of
+        AdapterHttp (the HTTP facade), so that WebClient and @HttpExchange code in plugins
+        sends through the host. A library that ships inside the plugin jar; not a host object.
+    </description>
+
+    <dependencies>
+        <!-- The HTTP facade: the host's HTTP path through which the Spring facade sends -->
+        <dependency>
+            <groupId>com.wiestigo.mirador</groupId>
+            <artifactId>rmm_adapter_api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!--
+            ClientHttpConnector, WebClient and Reactor; the version comes from the
+            Spring Boot parent. No Reactor Netty: the facade opens no network
+            connection of its own.
+        -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webflux</artifactId>
+        </dependency>
+        <!-- TESTING -->
+        <!--
+            Only for the tests with declarative HTTP interfaces: HttpServiceProxyFactory builds its
+            proxies with Spring AOP and converts arguments with the conversion service from
+            spring-context (which brings spring-aop). An adapter that uses such interfaces
+            declares this dependency itself.
+        -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,631 @@
+# The frozen contract major 1 of the package com.rmm.adapter.api.
+# One line per public or protected member of the package (type, field, constructor, method; in the notation
+# of toGenericString() under Java 17), prefixed with the minor version that introduced it: 0 = contract 1.0,
+# 1 = the additions of contract 1.1, including the minor version itself.
+# TestAdapterApiSignatures compares this list with the compiled classes.
+# Removing or changing a member breaks major 1. A new member comes with the next minor version: append its
+# line with MINOR + 1, raise AdapterApiVersion.MINOR and add the fingerprint of the new minor version to
+# TestAdapterApiSignatures.FROZEN_MINORS; the fingerprints of the earlier minor versions stay. An existing
+# type never gains an abstract member, only a default method. Constants (primitive or String) are listed
+# with their value (" = <value>"), except AdapterApiVersion.MINOR.
+0 public abstract <T> java.util.concurrent.Future<T> com.rmm.adapter.api.AdapterExecutor.submit(java.util.concurrent.Callable<T>)
+0 public abstract <V> com.rmm.adapter.api.MemoryCache<V> com.rmm.adapter.api.AdapterCaches.memory(java.lang.String,int)
+0 public abstract boolean com.rmm.adapter.api.AdapterConfig.bool(java.lang.String)
+0 public abstract boolean com.rmm.adapter.api.AdapterExecutor$TaskContext.stopRequested()
+0 public abstract boolean com.rmm.adapter.api.DocumentCollection.delete(java.lang.String)
+0 public abstract com.rmm.adapter.api.AdapterBinding com.rmm.adapter.api.AdapterContext.binding()
+0 public abstract com.rmm.adapter.api.AdapterConfig com.rmm.adapter.api.AdapterContext.config()
+0 public abstract com.rmm.adapter.api.AdapterDescriptor com.rmm.adapter.api.ToolAdapter.descriptor()
+0 public abstract com.rmm.adapter.api.AdapterExecutor$Scheduled com.rmm.adapter.api.AdapterExecutor.schedule(java.lang.String,java.time.Duration,com.rmm.adapter.api.AdapterExecutor$ScheduledTask)
+0 public abstract com.rmm.adapter.api.AdapterInstance com.rmm.adapter.api.ToolAdapter.bind(com.rmm.adapter.api.AdapterContext) throws com.rmm.adapter.api.AdapterInitialisationException
+0 public abstract com.rmm.adapter.api.AdapterLogger com.rmm.adapter.api.AdapterContext.logger()
+0 public abstract com.rmm.adapter.api.AdapterMetrics com.rmm.adapter.api.AdapterContext.metrics()
+0 public abstract com.rmm.adapter.api.AdapterResponse com.rmm.adapter.api.AdapterHttp.send(com.rmm.adapter.api.AdapterRequest) throws com.rmm.adapter.api.AdapterException
+0 public abstract com.rmm.adapter.api.AdapterStore com.rmm.adapter.api.AdapterContext.store()
+0 public abstract com.rmm.adapter.api.AttachmentContent com.rmm.adapter.api.AttachmentContentSource.open() throws java.io.IOException,com.rmm.adapter.api.AdapterException
+0 public abstract com.rmm.adapter.api.DocumentCollection com.rmm.adapter.api.AdapterCaches.collection(java.lang.String)
+0 public abstract com.rmm.adapter.api.DocumentCollection com.rmm.adapter.api.AdapterRunStore.collection(java.lang.String)
+0 public abstract com.rmm.adapter.api.SourcePage<com.io_elements.layer_infrastructure.database_schema.element.ElementArtifact> com.rmm.adapter.api.SourceReader.readArtifacts(com.rmm.adapter.api.SyncRunContext,com.rmm.adapter.api.ReadScope,com.rmm.adapter.api.PageCursor) throws com.rmm.adapter.api.AdapterException
+0 public abstract com.rmm.adapter.api.StreamResponse com.rmm.adapter.api.AdapterHttp.open(com.rmm.adapter.api.AdapterRequest) throws com.rmm.adapter.api.AdapterException
+0 public abstract com.rmm.adapter.api.TargetOutcome com.rmm.adapter.api.TargetWriter.updateArtifact(com.rmm.adapter.api.SyncRunContext,com.io_elements.layer_infrastructure.database_schema.element.ElementArtifact) throws com.rmm.adapter.api.AdapterException
+0 public abstract com.rmm.adapter.api.TokenProvider$Token com.rmm.adapter.api.TokenProvider.fetch(com.rmm.adapter.api.AdapterHttp) throws com.rmm.adapter.api.AdapterException
+0 public abstract int com.rmm.adapter.api.AdapterConfig.integer(java.lang.String)
+0 public abstract int com.rmm.adapter.api.AdapterExecutor.parallelism()
+0 public abstract int com.rmm.adapter.api.MemoryCache.size()
+0 public abstract interface com.rmm.adapter.api.AdapterCaches
+0 public abstract interface com.rmm.adapter.api.AdapterConfig
+0 public abstract interface com.rmm.adapter.api.AdapterContext
+0 public abstract interface com.rmm.adapter.api.AdapterExecutor
+0 public abstract interface com.rmm.adapter.api.AdapterHttp
+0 public abstract interface com.rmm.adapter.api.AdapterInstance extends java.lang.AutoCloseable
+0 public abstract interface com.rmm.adapter.api.AdapterLogger
+0 public abstract interface com.rmm.adapter.api.AdapterMetrics
+0 public abstract interface com.rmm.adapter.api.AdapterRunStore
+0 public abstract interface com.rmm.adapter.api.AdapterStore
+0 public abstract interface com.rmm.adapter.api.AttachmentContentSource
+0 public abstract interface com.rmm.adapter.api.Auth
+0 public abstract interface com.rmm.adapter.api.DocumentCollection
+0 public abstract interface com.rmm.adapter.api.MemoryCache<V>
+0 public abstract interface com.rmm.adapter.api.MetadataProvider
+0 public abstract interface com.rmm.adapter.api.SourceReader
+0 public abstract interface com.rmm.adapter.api.TargetWriter
+0 public abstract interface com.rmm.adapter.api.TokenProvider
+0 public abstract interface com.rmm.adapter.api.ToolAdapter
+0 public abstract java.io.InputStream com.rmm.adapter.api.Body$Source.open() throws java.io.IOException
+0 public abstract java.lang.String com.rmm.adapter.api.AdapterConfig.string(java.lang.String)
+0 public abstract java.lang.String com.rmm.adapter.api.AdapterExecutor$Scheduled.name()
+0 public abstract java.lang.String com.rmm.adapter.api.AdapterExecutor$TaskContext.name()
+0 public abstract java.lang.String com.rmm.adapter.api.TargetWriter.createArtifact(com.rmm.adapter.api.SyncRunContext,com.io_elements.layer_infrastructure.database_schema.element.ElementArtifact) throws com.rmm.adapter.api.AdapterException
+0 public abstract java.net.CookieStore com.rmm.adapter.api.AdapterHttp.cookies()
+0 public abstract java.nio.file.Path com.rmm.adapter.api.AdapterConfig.path(java.lang.String)
+0 public abstract java.time.Instant com.rmm.adapter.api.AdapterExecutor$TaskContext.deadline()
+0 public abstract java.util.List<com.io_elements.layer_infrastructure.database_schema.element.ElementArtifactType> com.rmm.adapter.api.MetadataProvider.artifactTypes(java.lang.String) throws com.rmm.adapter.api.AdapterException
+0 public abstract java.util.List<com.io_elements.layer_infrastructure.database_schema.element.ElementRelationshipType> com.rmm.adapter.api.MetadataProvider.relationshipTypes(java.lang.String) throws com.rmm.adapter.api.AdapterException
+0 public abstract java.util.List<com.io_elements.layer_infrastructure.database_schema.element.field.ElementFieldType> com.rmm.adapter.api.MetadataProvider.fieldTypes(java.lang.String) throws com.rmm.adapter.api.AdapterException
+0 public abstract java.util.Optional<V> com.rmm.adapter.api.MemoryCache.get(java.lang.String)
+0 public abstract java.util.Optional<com.rmm.adapter.api.SourceReader> com.rmm.adapter.api.AdapterInstance.reader()
+0 public abstract java.util.Optional<com.rmm.adapter.api.TargetWriter> com.rmm.adapter.api.AdapterInstance.writer()
+0 public abstract java.util.Optional<java.lang.String> com.rmm.adapter.api.AdapterStore.read(java.lang.String)
+0 public abstract java.util.Optional<java.lang.String> com.rmm.adapter.api.DocumentCollection.get(java.lang.String)
+0 public abstract java.util.UUID com.rmm.adapter.api.AdapterRunStore.runId()
+0 public abstract java.util.stream.Stream<com.rmm.adapter.api.DocumentCollection$Document> com.rmm.adapter.api.DocumentCollection.all(java.lang.String,int)
+0 public abstract java.util.stream.Stream<com.rmm.adapter.api.DocumentCollection$Document> com.rmm.adapter.api.DocumentCollection.find(java.lang.String,boolean)
+0 public abstract java.util.stream.Stream<com.rmm.adapter.api.DocumentCollection$Document> com.rmm.adapter.api.DocumentCollection.find(java.lang.String,java.lang.String)
+0 public abstract java.util.stream.Stream<com.rmm.adapter.api.DocumentCollection$Document> com.rmm.adapter.api.DocumentCollection.find(java.lang.String,long)
+0 public abstract static interface com.rmm.adapter.api.AdapterExecutor$Scheduled extends java.lang.AutoCloseable
+0 public abstract static interface com.rmm.adapter.api.AdapterExecutor$ScheduledTask
+0 public abstract static interface com.rmm.adapter.api.AdapterExecutor$TaskContext
+0 public abstract static interface com.rmm.adapter.api.AdapterHttp$Awaiting extends java.lang.AutoCloseable
+0 public abstract static interface com.rmm.adapter.api.Body$Source
+0 public abstract void com.rmm.adapter.api.AdapterExecutor$Scheduled.close()
+0 public abstract void com.rmm.adapter.api.AdapterExecutor$ScheduledTask.run(com.rmm.adapter.api.AdapterExecutor$TaskContext) throws java.lang.Exception
+0 public abstract void com.rmm.adapter.api.AdapterHttp$Awaiting.close()
+0 public abstract void com.rmm.adapter.api.AdapterHttp.auth(java.net.URI,com.rmm.adapter.api.Auth)
+0 public abstract void com.rmm.adapter.api.AdapterLogger.error(java.lang.String)
+0 public abstract void com.rmm.adapter.api.AdapterLogger.error(java.lang.String,java.lang.Throwable)
+0 public abstract void com.rmm.adapter.api.AdapterLogger.info(java.lang.String)
+0 public abstract void com.rmm.adapter.api.AdapterLogger.warn(java.lang.String)
+0 public abstract void com.rmm.adapter.api.AdapterMetrics.recordThrottleWait(long)
+0 public abstract void com.rmm.adapter.api.AdapterMetrics.recordToolRequest()
+0 public abstract void com.rmm.adapter.api.AdapterMetrics.recordToolRetry()
+0 public abstract void com.rmm.adapter.api.AdapterStore.delete(java.lang.String)
+0 public abstract void com.rmm.adapter.api.AdapterStore.write(java.lang.String,java.lang.String)
+0 public abstract void com.rmm.adapter.api.DocumentCollection.clear()
+0 public abstract void com.rmm.adapter.api.DocumentCollection.index(java.lang.String)
+0 public abstract void com.rmm.adapter.api.DocumentCollection.put(java.lang.String,java.lang.String)
+0 public abstract void com.rmm.adapter.api.MemoryCache.clear()
+0 public abstract void com.rmm.adapter.api.MemoryCache.put(java.lang.String,V)
+0 public abstract void com.rmm.adapter.api.MemoryCache.remove(java.lang.String)
+0 public abstract void com.rmm.adapter.api.TargetWriter.deleteArtifact(com.rmm.adapter.api.SyncRunContext,java.lang.String) throws com.rmm.adapter.api.AdapterException
+0 public abstract void com.rmm.adapter.api.TargetWriter.updateArtifactHierarchy(com.rmm.adapter.api.SyncRunContext,com.io_elements.layer_infrastructure.database_schema.element.ElementArtifact) throws com.rmm.adapter.api.AdapterException
+0 public boolean com.rmm.adapter.api.AdapterCapabilities.reads(com.rmm.adapter.api.SyncPhase)
+0 public boolean com.rmm.adapter.api.AdapterCapabilities.supportsArtifactTypeChange()
+0 public boolean com.rmm.adapter.api.AdapterCapabilities.supportsDeltaRead()
+0 public boolean com.rmm.adapter.api.AdapterCapabilities.supportsPartialUpdate()
+0 public boolean com.rmm.adapter.api.AdapterCapabilities.supportsRelationshipUpdate()
+0 public boolean com.rmm.adapter.api.AdapterCapabilities.writes(com.rmm.adapter.api.SyncPhase)
+0 public boolean com.rmm.adapter.api.AdapterException.isRetryable()
+0 public boolean com.rmm.adapter.api.AdapterRequest.idempotent()
+0 public boolean com.rmm.adapter.api.AdapterRequest.repeatable()
+0 public boolean com.rmm.adapter.api.AdapterResponse.successful()
+0 public boolean com.rmm.adapter.api.Body.replayable()
+0 public boolean com.rmm.adapter.api.ConfigKey.isRequired()
+0 public boolean com.rmm.adapter.api.ReadScope.isDelta()
+0 public boolean com.rmm.adapter.api.ReadScope.isExplicit()
+0 public boolean com.rmm.adapter.api.ReadScope.isFull()
+0 public boolean com.rmm.adapter.api.RedirectPolicy.equals(java.lang.Object)
+0 public boolean com.rmm.adapter.api.RedirectPolicy.follows()
+0 public boolean com.rmm.adapter.api.SourcePage.lastPage()
+0 public boolean com.rmm.adapter.api.StreamResponse.successful()
+0 public boolean com.rmm.adapter.api.SyncRunContext.expired(java.time.Instant)
+0 public boolean com.rmm.adapter.api.TargetOutcome.isApplied(java.lang.String)
+0 public boolean com.rmm.adapter.api.TargetOutcome.isSuccess()
+0 public boolean com.rmm.adapter.api.TargetOutcome.reportsFields()
+0 public boolean com.rmm.adapter.api.TargetOutcome.skipped()
+0 public boolean com.rmm.adapter.api.VariabilityTree.global()
+0 public boolean com.rmm.adapter.api.VariabilityVariant.global()
+0 public boolean com.rmm.adapter.api.VariabilityVariant.valid()
+0 public byte[] com.rmm.adapter.api.AdapterResponse.body()
+0 public class com.rmm.adapter.api.AdapterException extends java.lang.Exception
+0 public class com.rmm.adapter.api.AdapterInitialisationException extends com.rmm.adapter.api.AdapterException
+0 public class com.rmm.adapter.api.AdapterStoreLimitException extends java.lang.RuntimeException
+0 public class com.rmm.adapter.api.ResponseTooLargeException extends com.rmm.adapter.api.AdapterException
+0 public com.rmm.adapter.api.AdapterBinding(java.lang.String)
+0 public com.rmm.adapter.api.AdapterCapabilities com.rmm.adapter.api.AdapterDescriptor.capabilities()
+0 public com.rmm.adapter.api.AdapterCapabilities(java.util.Set<com.rmm.adapter.api.SyncDirection>,com.rmm.adapter.api.HierarchyModel,boolean,boolean,boolean,boolean,java.util.Set<com.rmm.adapter.api.SyncPhase>,java.util.Set<com.rmm.adapter.api.SyncPhase>,java.util.Set<com.rmm.adapter.api.BulkOperation>,com.rmm.adapter.api.RateLimit)
+0 public com.rmm.adapter.api.AdapterDescriptor(java.lang.String,java.lang.String,java.lang.String,int,com.rmm.adapter.api.AdapterCapabilities,java.util.List<com.rmm.adapter.api.ConfigKey>,java.util.List<com.rmm.adapter.api.IdentifierKind>)
+0 public com.rmm.adapter.api.AdapterException(java.lang.String)
+0 public com.rmm.adapter.api.AdapterException(java.lang.String,java.lang.Throwable)
+0 public com.rmm.adapter.api.AdapterException(java.lang.String,java.lang.Throwable,boolean)
+0 public com.rmm.adapter.api.AdapterException(java.lang.String,java.lang.Throwable,boolean,int)
+0 public com.rmm.adapter.api.AdapterInitialisationException(java.lang.String)
+0 public com.rmm.adapter.api.AdapterInitialisationException(java.lang.String,java.lang.Throwable)
+0 public com.rmm.adapter.api.AdapterRequest com.rmm.adapter.api.AdapterRequest$Builder.build()
+0 public com.rmm.adapter.api.AdapterRequest$Builder com.rmm.adapter.api.AdapterRequest$Builder.body(com.rmm.adapter.api.Body)
+0 public com.rmm.adapter.api.AdapterRequest$Builder com.rmm.adapter.api.AdapterRequest$Builder.header(java.lang.String,java.lang.String)
+0 public com.rmm.adapter.api.AdapterRequest$Builder com.rmm.adapter.api.AdapterRequest$Builder.idempotent(boolean)
+0 public com.rmm.adapter.api.AdapterRequest$Builder com.rmm.adapter.api.AdapterRequest$Builder.redirects(com.rmm.adapter.api.RedirectPolicy)
+0 public com.rmm.adapter.api.AdapterRequest$Builder com.rmm.adapter.api.AdapterRequest$Builder.run(com.rmm.adapter.api.SyncRunContext)
+0 public com.rmm.adapter.api.AdapterRequest$Builder com.rmm.adapter.api.AdapterRequest$Builder.secretHeader(java.lang.String,com.rmm.adapter.api.SecretValue)
+0 public com.rmm.adapter.api.AdapterRequest$Builder com.rmm.adapter.api.AdapterRequest$Builder.timeout(java.time.Duration)
+0 public com.rmm.adapter.api.AdapterRequest$Builder com.rmm.adapter.api.AdapterRequest.toBuilder()
+0 public com.rmm.adapter.api.AdapterResponse(int,java.net.URI,java.util.Map<java.lang.String, java.util.List<java.lang.String>>,byte[])
+0 public com.rmm.adapter.api.AdapterStoreLimitException$Limit com.rmm.adapter.api.AdapterStoreLimitException.limit()
+0 public com.rmm.adapter.api.AdapterStoreLimitException(com.rmm.adapter.api.AdapterStoreLimitException$Limit,java.lang.String)
+0 public com.rmm.adapter.api.AttachmentContent(java.io.InputStream,long,java.lang.String)
+0 public com.rmm.adapter.api.Auth$Basic(java.lang.String,com.rmm.adapter.api.SecretValue)
+0 public com.rmm.adapter.api.Auth$Basic(java.lang.String,com.rmm.adapter.api.SecretValue,java.nio.charset.Charset)
+0 public com.rmm.adapter.api.Auth$Bearer(com.rmm.adapter.api.SecretValue)
+0 public com.rmm.adapter.api.Auth$OAuth(com.rmm.adapter.api.TokenProvider)
+0 public com.rmm.adapter.api.Body com.rmm.adapter.api.Multipart$Builder.build()
+0 public com.rmm.adapter.api.CommentFields(java.lang.String,java.lang.String)
+0 public com.rmm.adapter.api.ConfigKey(java.lang.String,com.rmm.adapter.api.ConfigType,java.lang.String,java.lang.String)
+0 public com.rmm.adapter.api.ConfigKey(java.lang.String,com.rmm.adapter.api.ConfigType,java.lang.String,java.lang.String,com.rmm.adapter.api.ConfigScope)
+0 public com.rmm.adapter.api.ConfigScope com.rmm.adapter.api.ConfigKey.scope()
+0 public com.rmm.adapter.api.ConfigType com.rmm.adapter.api.ConfigKey.type()
+0 public com.rmm.adapter.api.DocumentCollection$Document(java.lang.String,java.lang.String)
+0 public com.rmm.adapter.api.ElementFailure(java.lang.String,java.lang.String,java.lang.Throwable)
+0 public com.rmm.adapter.api.ElementFeatures(java.lang.String,java.util.List<java.lang.String>)
+0 public com.rmm.adapter.api.HierarchyModel com.rmm.adapter.api.AdapterCapabilities.hierarchyModel()
+0 public com.rmm.adapter.api.HostLimits(java.util.OptionalLong,java.util.Optional<java.net.URI>)
+0 public com.rmm.adapter.api.IdentifierKind com.rmm.adapter.api.IdentifierKind.withSample(java.lang.String)
+0 public com.rmm.adapter.api.IdentifierKind(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+0 public com.rmm.adapter.api.Multipart$Builder com.rmm.adapter.api.Multipart$Builder.field(java.lang.String,java.lang.String)
+0 public com.rmm.adapter.api.Multipart$Builder com.rmm.adapter.api.Multipart$Builder.file(java.lang.String,java.lang.String,com.rmm.adapter.api.Body)
+0 public com.rmm.adapter.api.PageCursor com.rmm.adapter.api.SourcePage.nextCursor()
+0 public com.rmm.adapter.api.PageCursor(java.lang.String)
+0 public com.rmm.adapter.api.PathHierarchy(java.lang.String,java.lang.String,java.lang.String)
+0 public com.rmm.adapter.api.RateLimit com.rmm.adapter.api.AdapterCapabilities.rateLimit()
+0 public com.rmm.adapter.api.RateLimit(int,int)
+0 public com.rmm.adapter.api.ReadScope(java.time.Instant,java.util.Set<java.lang.String>)
+0 public com.rmm.adapter.api.RedirectPolicy com.rmm.adapter.api.AdapterRequest.redirects()
+0 public com.rmm.adapter.api.ResponseTooLargeException(java.lang.String)
+0 public com.rmm.adapter.api.SecretValue com.rmm.adapter.api.Auth$Basic.password()
+0 public com.rmm.adapter.api.SecretValue com.rmm.adapter.api.Auth$Basic.token()
+0 public com.rmm.adapter.api.SecretValue com.rmm.adapter.api.Auth$Bearer.token()
+0 public com.rmm.adapter.api.SecretValue com.rmm.adapter.api.TokenProvider$Token.accessToken()
+0 public com.rmm.adapter.api.SourcePage(java.util.List<T>,java.util.List<com.rmm.adapter.api.ElementFailure>,int,com.rmm.adapter.api.PageCursor,boolean)
+0 public com.rmm.adapter.api.SourcePage(java.util.List<T>,java.util.List<com.rmm.adapter.api.ElementFailure>,int,com.rmm.adapter.api.PageCursor,boolean,java.util.List<java.lang.String>)
+0 public com.rmm.adapter.api.SourcePage(java.util.List<T>,java.util.List<com.rmm.adapter.api.ElementFailure>,int,com.rmm.adapter.api.PageCursor,boolean,java.util.List<java.lang.String>,java.util.List<java.lang.String>)
+0 public com.rmm.adapter.api.StreamResponse(int,java.net.URI,java.util.Map<java.lang.String, java.util.List<java.lang.String>>,java.util.OptionalLong,java.io.InputStream)
+0 public com.rmm.adapter.api.SyncPhase com.rmm.adapter.api.BulkOperation.phase()
+0 public com.rmm.adapter.api.SyncRunContext(java.util.UUID,java.lang.String)
+0 public com.rmm.adapter.api.SyncRunContext(java.util.UUID,java.lang.String,java.time.Instant)
+0 public com.rmm.adapter.api.TargetOutcome com.rmm.adapter.api.TargetOutcome.withNote(java.lang.String)
+0 public com.rmm.adapter.api.TargetOutcome com.rmm.adapter.api.TargetOutcome.withNotes(java.util.Collection<java.lang.String>)
+0 public com.rmm.adapter.api.TargetOutcome(java.lang.String,java.lang.Exception,java.util.Set<java.lang.String>)
+0 public com.rmm.adapter.api.TargetOutcome(java.lang.String,java.lang.Exception,java.util.Set<java.lang.String>,java.util.Map<java.lang.String, java.lang.String>)
+0 public com.rmm.adapter.api.TargetOutcome(java.lang.String,java.lang.Exception,java.util.Set<java.lang.String>,java.util.Map<java.lang.String, java.lang.String>,java.util.List<java.lang.String>,boolean)
+0 public com.rmm.adapter.api.TokenProvider com.rmm.adapter.api.Auth$OAuth.provider()
+0 public com.rmm.adapter.api.TokenProvider$Token(com.rmm.adapter.api.SecretValue,java.time.Instant)
+0 public com.rmm.adapter.api.VariabilityConstraint(java.lang.String,java.lang.String,java.lang.String)
+0 public com.rmm.adapter.api.VariabilityFeature(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+0 public com.rmm.adapter.api.VariabilityTree(java.lang.String,java.lang.String,java.lang.String,boolean,java.util.List<com.rmm.adapter.api.VariabilityFeature>,java.util.List<com.rmm.adapter.api.VariabilityConstraint>)
+0 public com.rmm.adapter.api.VariabilityVariant(java.lang.String,java.lang.String,java.lang.String,boolean,boolean,java.util.List<java.lang.String>)
+0 public default com.rmm.adapter.api.AdapterCaches com.rmm.adapter.api.AdapterContext.caches()
+0 public default com.rmm.adapter.api.AdapterExecutor com.rmm.adapter.api.AdapterContext.executor()
+0 public default com.rmm.adapter.api.AdapterHttp com.rmm.adapter.api.AdapterContext.http()
+0 public default com.rmm.adapter.api.AdapterHttp$Awaiting com.rmm.adapter.api.AdapterHttp.awaitingOwnRequests()
+0 public default com.rmm.adapter.api.AdapterRunStore com.rmm.adapter.api.AdapterContext.runStore()
+0 public default com.rmm.adapter.api.AdapterRunStore com.rmm.adapter.api.AdapterContext.runStore(com.rmm.adapter.api.SyncRunContext)
+0 public default com.rmm.adapter.api.AttachmentContent com.rmm.adapter.api.SourceReader.openAttachment(com.rmm.adapter.api.SyncRunContext,java.lang.String) throws com.rmm.adapter.api.AdapterException
+0 public default com.rmm.adapter.api.DocumentCollection com.rmm.adapter.api.AdapterStore.collection(java.lang.String)
+0 public default com.rmm.adapter.api.HostLimits com.rmm.adapter.api.AdapterConfig.host()
+0 public default com.rmm.adapter.api.SecretValue com.rmm.adapter.api.AdapterConfig.secret(java.lang.String)
+0 public default com.rmm.adapter.api.SourcePage<com.io_elements.layer_infrastructure.database_schema.element.ElementAttachment> com.rmm.adapter.api.SourceReader.readAttachments(com.rmm.adapter.api.SyncRunContext,com.rmm.adapter.api.ReadScope,com.rmm.adapter.api.PageCursor) throws com.rmm.adapter.api.AdapterException
+0 public default com.rmm.adapter.api.SourcePage<com.io_elements.layer_infrastructure.database_schema.element.ElementComment> com.rmm.adapter.api.SourceReader.readComments(com.rmm.adapter.api.SyncRunContext,com.rmm.adapter.api.ReadScope,com.rmm.adapter.api.PageCursor) throws com.rmm.adapter.api.AdapterException
+0 public default com.rmm.adapter.api.SourcePage<com.io_elements.layer_infrastructure.database_schema.element.ElementRelationship> com.rmm.adapter.api.SourceReader.readRelationships(com.rmm.adapter.api.SyncRunContext,com.rmm.adapter.api.ReadScope,com.rmm.adapter.api.PageCursor) throws com.rmm.adapter.api.AdapterException
+0 public default com.rmm.adapter.api.SourcePage<com.rmm.adapter.api.ElementFeatures> com.rmm.adapter.api.SourceReader.readElementFeatures(com.rmm.adapter.api.SyncRunContext,com.rmm.adapter.api.ReadScope,com.rmm.adapter.api.PageCursor) throws com.rmm.adapter.api.AdapterException
+0 public default com.rmm.adapter.api.TargetOutcome com.rmm.adapter.api.TargetWriter.createCommentWithOutcome(com.rmm.adapter.api.SyncRunContext,com.io_elements.layer_infrastructure.database_schema.element.ElementComment) throws com.rmm.adapter.api.AdapterException
+0 public default int com.rmm.adapter.api.AdapterConfig.limit(java.lang.String)
+0 public default java.lang.String com.rmm.adapter.api.TargetWriter.createAttachment(com.rmm.adapter.api.SyncRunContext,com.io_elements.layer_infrastructure.database_schema.element.ElementAttachment,com.rmm.adapter.api.AttachmentContentSource) throws com.rmm.adapter.api.AdapterException
+0 public default java.lang.String com.rmm.adapter.api.TargetWriter.createComment(com.rmm.adapter.api.SyncRunContext,com.io_elements.layer_infrastructure.database_schema.element.ElementComment) throws com.rmm.adapter.api.AdapterException
+0 public default java.lang.String com.rmm.adapter.api.TargetWriter.createRelationship(com.rmm.adapter.api.SyncRunContext,com.io_elements.layer_infrastructure.database_schema.element.ElementRelationship) throws com.rmm.adapter.api.AdapterException
+0 public default java.lang.String com.rmm.adapter.api.TargetWriter.updateRelationship(com.rmm.adapter.api.SyncRunContext,com.io_elements.layer_infrastructure.database_schema.element.ElementRelationship) throws com.rmm.adapter.api.AdapterException
+0 public default java.net.URI com.rmm.adapter.api.AdapterConfig.url(java.lang.String)
+0 public default java.util.List<com.rmm.adapter.api.ConfigKey> com.rmm.adapter.api.AdapterInstance.connectionKeys()
+0 public default java.util.List<com.rmm.adapter.api.TargetOutcome> com.rmm.adapter.api.TargetWriter.createArtifacts(com.rmm.adapter.api.SyncRunContext,java.util.List<com.io_elements.layer_infrastructure.database_schema.element.ElementArtifact>) throws com.rmm.adapter.api.AdapterException
+0 public default java.util.List<com.rmm.adapter.api.TargetOutcome> com.rmm.adapter.api.TargetWriter.createComments(com.rmm.adapter.api.SyncRunContext,java.util.List<com.io_elements.layer_infrastructure.database_schema.element.ElementComment>) throws com.rmm.adapter.api.AdapterException
+0 public default java.util.List<com.rmm.adapter.api.TargetOutcome> com.rmm.adapter.api.TargetWriter.createRelationships(com.rmm.adapter.api.SyncRunContext,java.util.List<com.io_elements.layer_infrastructure.database_schema.element.ElementRelationship>) throws com.rmm.adapter.api.AdapterException
+0 public default java.util.List<com.rmm.adapter.api.TargetOutcome> com.rmm.adapter.api.TargetWriter.deleteArtifacts(com.rmm.adapter.api.SyncRunContext,java.util.List<java.lang.String>) throws com.rmm.adapter.api.AdapterException
+0 public default java.util.List<com.rmm.adapter.api.TargetOutcome> com.rmm.adapter.api.TargetWriter.deleteRelationships(com.rmm.adapter.api.SyncRunContext,java.util.List<java.lang.String>) throws com.rmm.adapter.api.AdapterException
+0 public default java.util.List<com.rmm.adapter.api.TargetOutcome> com.rmm.adapter.api.TargetWriter.updateArtifacts(com.rmm.adapter.api.SyncRunContext,java.util.List<com.io_elements.layer_infrastructure.database_schema.element.ElementArtifact>) throws com.rmm.adapter.api.AdapterException
+0 public default java.util.List<com.rmm.adapter.api.TargetOutcome> com.rmm.adapter.api.TargetWriter.updateArtifactsHierarchy(com.rmm.adapter.api.SyncRunContext,java.util.List<com.io_elements.layer_infrastructure.database_schema.element.ElementArtifact>) throws com.rmm.adapter.api.AdapterException
+0 public default java.util.List<com.rmm.adapter.api.TargetOutcome> com.rmm.adapter.api.TargetWriter.updateRelationships(com.rmm.adapter.api.SyncRunContext,java.util.List<com.io_elements.layer_infrastructure.database_schema.element.ElementRelationship>) throws com.rmm.adapter.api.AdapterException
+0 public default java.util.List<com.rmm.adapter.api.TargetOutcome> com.rmm.adapter.api.TargetWriter.writeElementFeatures(com.rmm.adapter.api.SyncRunContext,java.util.List<com.rmm.adapter.api.ElementFeatures>) throws com.rmm.adapter.api.AdapterException
+0 public default java.util.List<java.security.cert.X509Certificate> com.rmm.adapter.api.AdapterConfig.certificate(java.lang.String)
+0 public default java.util.Optional<com.rmm.adapter.api.AdapterCapabilities> com.rmm.adapter.api.AdapterInstance.capabilities()
+0 public default java.util.Optional<com.rmm.adapter.api.AttachmentContent> com.rmm.adapter.api.SourceReader.openInlineImage(com.rmm.adapter.api.SyncRunContext,java.lang.String,java.lang.String) throws com.rmm.adapter.api.AdapterException
+0 public default java.util.Optional<com.rmm.adapter.api.CommentFields> com.rmm.adapter.api.MetadataProvider.commentFields()
+0 public default java.util.Optional<com.rmm.adapter.api.MetadataProvider> com.rmm.adapter.api.AdapterInstance.metadata()
+0 public default java.util.Optional<com.rmm.adapter.api.PathHierarchy> com.rmm.adapter.api.AdapterInstance.pathHierarchy()
+0 public default java.util.Optional<com.rmm.adapter.api.ReadScope> com.rmm.adapter.api.AdapterInstance.parseEvent(java.util.Map<java.lang.String, java.util.List<java.lang.String>>,java.io.InputStream) throws com.rmm.adapter.api.AdapterException
+0 public default java.util.Optional<com.rmm.adapter.api.SyncRunContext> com.rmm.adapter.api.AdapterHttp.currentRun()
+0 public default void com.rmm.adapter.api.AdapterInstance.checkHealth() throws com.rmm.adapter.api.AdapterException
+0 public default void com.rmm.adapter.api.AdapterInstance.close()
+0 public default void com.rmm.adapter.api.AdapterInstance.purge() throws com.rmm.adapter.api.AdapterException
+0 public default void com.rmm.adapter.api.AdapterMetrics.recordToolRequest(long)
+0 public default void com.rmm.adapter.api.TargetWriter.convertArtifact(com.rmm.adapter.api.SyncRunContext,com.io_elements.layer_infrastructure.database_schema.element.ElementArtifact) throws com.rmm.adapter.api.AdapterException
+0 public default void com.rmm.adapter.api.TargetWriter.deleteAttachment(com.rmm.adapter.api.SyncRunContext,com.io_elements.layer_infrastructure.database_schema.element.ElementAttachment) throws com.rmm.adapter.api.AdapterException
+0 public default void com.rmm.adapter.api.TargetWriter.deleteRelationship(com.rmm.adapter.api.SyncRunContext,java.lang.String) throws com.rmm.adapter.api.AdapterException
+0 public default void com.rmm.adapter.api.TargetWriter.writeFeatureTrees(com.rmm.adapter.api.SyncRunContext,java.util.List<com.rmm.adapter.api.VariabilityTree>) throws com.rmm.adapter.api.AdapterException
+0 public default void com.rmm.adapter.api.TargetWriter.writeVariants(com.rmm.adapter.api.SyncRunContext,java.util.List<com.rmm.adapter.api.VariabilityVariant>) throws com.rmm.adapter.api.AdapterException
+0 public final boolean com.rmm.adapter.api.AdapterBinding.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.AdapterCapabilities.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.AdapterDescriptor.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.AttachmentContent.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.Auth$Basic.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.Auth$Bearer.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.Auth$OAuth.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.CommentFields.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.ConfigKey.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.DocumentCollection$Document.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.ElementFailure.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.ElementFeatures.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.HostLimits.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.IdentifierKind.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.PageCursor.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.PathHierarchy.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.RateLimit.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.ReadScope.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.SourcePage.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.SyncRunContext.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.TargetOutcome.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.TokenProvider$Token.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.VariabilityConstraint.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.VariabilityFeature.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.VariabilityTree.equals(java.lang.Object)
+0 public final boolean com.rmm.adapter.api.VariabilityVariant.equals(java.lang.Object)
+0 public final class com.rmm.adapter.api.AdapterApiVersion
+0 public final class com.rmm.adapter.api.AdapterConventions
+0 public final class com.rmm.adapter.api.AdapterRequest
+0 public final class com.rmm.adapter.api.AdapterResponse
+0 public final class com.rmm.adapter.api.Body
+0 public final class com.rmm.adapter.api.Multipart
+0 public final class com.rmm.adapter.api.RedirectPolicy
+0 public final class com.rmm.adapter.api.SecretValue
+0 public final class com.rmm.adapter.api.StreamResponse implements java.lang.AutoCloseable
+0 public final enum com.rmm.adapter.api.BulkOperation
+0 public final enum com.rmm.adapter.api.ConfigScope
+0 public final enum com.rmm.adapter.api.ConfigType
+0 public final enum com.rmm.adapter.api.HierarchyModel
+0 public final enum com.rmm.adapter.api.SyncDirection
+0 public final enum com.rmm.adapter.api.SyncPhase
+0 public final int com.rmm.adapter.api.AdapterBinding.hashCode()
+0 public final int com.rmm.adapter.api.AdapterCapabilities.hashCode()
+0 public final int com.rmm.adapter.api.AdapterDescriptor.hashCode()
+0 public final int com.rmm.adapter.api.AttachmentContent.hashCode()
+0 public final int com.rmm.adapter.api.Auth$Basic.hashCode()
+0 public final int com.rmm.adapter.api.Auth$Bearer.hashCode()
+0 public final int com.rmm.adapter.api.Auth$OAuth.hashCode()
+0 public final int com.rmm.adapter.api.CommentFields.hashCode()
+0 public final int com.rmm.adapter.api.ConfigKey.hashCode()
+0 public final int com.rmm.adapter.api.DocumentCollection$Document.hashCode()
+0 public final int com.rmm.adapter.api.ElementFailure.hashCode()
+0 public final int com.rmm.adapter.api.ElementFeatures.hashCode()
+0 public final int com.rmm.adapter.api.HostLimits.hashCode()
+0 public final int com.rmm.adapter.api.IdentifierKind.hashCode()
+0 public final int com.rmm.adapter.api.PageCursor.hashCode()
+0 public final int com.rmm.adapter.api.PathHierarchy.hashCode()
+0 public final int com.rmm.adapter.api.RateLimit.hashCode()
+0 public final int com.rmm.adapter.api.ReadScope.hashCode()
+0 public final int com.rmm.adapter.api.SourcePage.hashCode()
+0 public final int com.rmm.adapter.api.SyncRunContext.hashCode()
+0 public final int com.rmm.adapter.api.TargetOutcome.hashCode()
+0 public final int com.rmm.adapter.api.TokenProvider$Token.hashCode()
+0 public final int com.rmm.adapter.api.VariabilityConstraint.hashCode()
+0 public final int com.rmm.adapter.api.VariabilityFeature.hashCode()
+0 public final int com.rmm.adapter.api.VariabilityTree.hashCode()
+0 public final int com.rmm.adapter.api.VariabilityVariant.hashCode()
+0 public final java.lang.String com.rmm.adapter.api.AdapterBinding.toString()
+0 public final java.lang.String com.rmm.adapter.api.AdapterCapabilities.toString()
+0 public final java.lang.String com.rmm.adapter.api.AdapterDescriptor.toString()
+0 public final java.lang.String com.rmm.adapter.api.AttachmentContent.toString()
+0 public final java.lang.String com.rmm.adapter.api.Auth$Basic.toString()
+0 public final java.lang.String com.rmm.adapter.api.Auth$Bearer.toString()
+0 public final java.lang.String com.rmm.adapter.api.Auth$OAuth.toString()
+0 public final java.lang.String com.rmm.adapter.api.CommentFields.toString()
+0 public final java.lang.String com.rmm.adapter.api.ConfigKey.toString()
+0 public final java.lang.String com.rmm.adapter.api.ElementFailure.toString()
+0 public final java.lang.String com.rmm.adapter.api.ElementFeatures.toString()
+0 public final java.lang.String com.rmm.adapter.api.HostLimits.toString()
+0 public final java.lang.String com.rmm.adapter.api.IdentifierKind.toString()
+0 public final java.lang.String com.rmm.adapter.api.PageCursor.toString()
+0 public final java.lang.String com.rmm.adapter.api.PathHierarchy.toString()
+0 public final java.lang.String com.rmm.adapter.api.RateLimit.toString()
+0 public final java.lang.String com.rmm.adapter.api.ReadScope.toString()
+0 public final java.lang.String com.rmm.adapter.api.SourcePage.toString()
+0 public final java.lang.String com.rmm.adapter.api.SyncRunContext.toString()
+0 public final java.lang.String com.rmm.adapter.api.TargetOutcome.toString()
+0 public final java.lang.String com.rmm.adapter.api.TokenProvider$Token.toString()
+0 public final java.lang.String com.rmm.adapter.api.VariabilityConstraint.toString()
+0 public final java.lang.String com.rmm.adapter.api.VariabilityFeature.toString()
+0 public final java.lang.String com.rmm.adapter.api.VariabilityTree.toString()
+0 public final java.lang.String com.rmm.adapter.api.VariabilityVariant.toString()
+0 public final record com.rmm.adapter.api.AdapterBinding
+0 public final record com.rmm.adapter.api.AdapterCapabilities
+0 public final record com.rmm.adapter.api.AdapterDescriptor
+0 public final record com.rmm.adapter.api.AttachmentContent implements java.lang.AutoCloseable
+0 public final record com.rmm.adapter.api.CommentFields
+0 public final record com.rmm.adapter.api.ConfigKey
+0 public final record com.rmm.adapter.api.ElementFailure
+0 public final record com.rmm.adapter.api.ElementFeatures
+0 public final record com.rmm.adapter.api.HostLimits
+0 public final record com.rmm.adapter.api.IdentifierKind
+0 public final record com.rmm.adapter.api.PageCursor
+0 public final record com.rmm.adapter.api.PathHierarchy
+0 public final record com.rmm.adapter.api.RateLimit
+0 public final record com.rmm.adapter.api.ReadScope
+0 public final record com.rmm.adapter.api.SourcePage<T>
+0 public final record com.rmm.adapter.api.SyncRunContext
+0 public final record com.rmm.adapter.api.TargetOutcome
+0 public final record com.rmm.adapter.api.VariabilityConstraint
+0 public final record com.rmm.adapter.api.VariabilityFeature
+0 public final record com.rmm.adapter.api.VariabilityTree
+0 public final record com.rmm.adapter.api.VariabilityVariant
+0 public int com.rmm.adapter.api.AdapterDescriptor.apiMajorVersion()
+0 public int com.rmm.adapter.api.AdapterRequest.port()
+0 public int com.rmm.adapter.api.AdapterResponse.status()
+0 public int com.rmm.adapter.api.RateLimit.maxRequestsPerSecond()
+0 public int com.rmm.adapter.api.RateLimit.maxRetries()
+0 public int com.rmm.adapter.api.RedirectPolicy.hashCode()
+0 public int com.rmm.adapter.api.RedirectPolicy.maxHops()
+0 public int com.rmm.adapter.api.SourcePage.readCount()
+0 public int com.rmm.adapter.api.StreamResponse.status()
+0 public java.io.InputStream com.rmm.adapter.api.AdapterResponse.bodyStream()
+0 public java.io.InputStream com.rmm.adapter.api.AttachmentContent.stream()
+0 public java.io.InputStream com.rmm.adapter.api.Body.open() throws java.io.IOException
+0 public java.io.InputStream com.rmm.adapter.api.StreamResponse.body()
+0 public java.lang.Exception com.rmm.adapter.api.TargetOutcome.failure()
+0 public java.lang.String com.rmm.adapter.api.AdapterBinding.bindingId()
+0 public java.lang.String com.rmm.adapter.api.AdapterDescriptor.adapterVersion()
+0 public java.lang.String com.rmm.adapter.api.AdapterDescriptor.displayName()
+0 public java.lang.String com.rmm.adapter.api.AdapterDescriptor.systemKey()
+0 public java.lang.String com.rmm.adapter.api.AdapterRequest.host()
+0 public java.lang.String com.rmm.adapter.api.AdapterRequest.method()
+0 public java.lang.String com.rmm.adapter.api.AdapterRequest.toString()
+0 public java.lang.String com.rmm.adapter.api.AdapterResponse.bodyAsString()
+0 public java.lang.String com.rmm.adapter.api.AdapterResponse.toString()
+0 public java.lang.String com.rmm.adapter.api.AttachmentContent.contentType()
+0 public java.lang.String com.rmm.adapter.api.Auth$Basic.user()
+0 public java.lang.String com.rmm.adapter.api.Body.toString()
+0 public java.lang.String com.rmm.adapter.api.CommentFields.bodyField()
+0 public java.lang.String com.rmm.adapter.api.CommentFields.inReplyToField()
+0 public java.lang.String com.rmm.adapter.api.ConfigKey.defaultValue()
+0 public java.lang.String com.rmm.adapter.api.ConfigKey.description()
+0 public java.lang.String com.rmm.adapter.api.ConfigKey.key()
+0 public java.lang.String com.rmm.adapter.api.DocumentCollection$Document.id()
+0 public java.lang.String com.rmm.adapter.api.DocumentCollection$Document.json()
+0 public java.lang.String com.rmm.adapter.api.DocumentCollection$Document.toString()
+0 public java.lang.String com.rmm.adapter.api.ElementFailure.externalId()
+0 public java.lang.String com.rmm.adapter.api.ElementFailure.message()
+0 public java.lang.String com.rmm.adapter.api.ElementFeatures.externalId()
+0 public java.lang.String com.rmm.adapter.api.IdentifierKind.description()
+0 public java.lang.String com.rmm.adapter.api.IdentifierKind.fieldLabel()
+0 public java.lang.String com.rmm.adapter.api.IdentifierKind.format()
+0 public java.lang.String com.rmm.adapter.api.IdentifierKind.name()
+0 public java.lang.String com.rmm.adapter.api.IdentifierKind.pattern()
+0 public java.lang.String com.rmm.adapter.api.IdentifierKind.roundTripSample()
+0 public java.lang.String com.rmm.adapter.api.IdentifierKind.sample()
+0 public java.lang.String com.rmm.adapter.api.IdentifierKind.verifyRoundTrip()
+0 public java.lang.String com.rmm.adapter.api.PageCursor.value()
+0 public java.lang.String com.rmm.adapter.api.PathHierarchy.attributeLabel()
+0 public java.lang.String com.rmm.adapter.api.PathHierarchy.attributeName()
+0 public java.lang.String com.rmm.adapter.api.PathHierarchy.separator()
+0 public java.lang.String com.rmm.adapter.api.RedirectPolicy.toString()
+0 public java.lang.String com.rmm.adapter.api.SecretValue.reveal()
+0 public java.lang.String com.rmm.adapter.api.SecretValue.toString()
+0 public java.lang.String com.rmm.adapter.api.StreamResponse.toString()
+0 public java.lang.String com.rmm.adapter.api.SyncRunContext.externalProjectId()
+0 public java.lang.String com.rmm.adapter.api.TargetOutcome.externalId()
+0 public java.lang.String com.rmm.adapter.api.VariabilityConstraint.feature()
+0 public java.lang.String com.rmm.adapter.api.VariabilityConstraint.kind()
+0 public java.lang.String com.rmm.adapter.api.VariabilityConstraint.otherFeature()
+0 public java.lang.String com.rmm.adapter.api.VariabilityFeature.description()
+0 public java.lang.String com.rmm.adapter.api.VariabilityFeature.kind()
+0 public java.lang.String com.rmm.adapter.api.VariabilityFeature.label()
+0 public java.lang.String com.rmm.adapter.api.VariabilityFeature.name()
+0 public java.lang.String com.rmm.adapter.api.VariabilityFeature.parentName()
+0 public java.lang.String com.rmm.adapter.api.VariabilityTree.description()
+0 public java.lang.String com.rmm.adapter.api.VariabilityTree.label()
+0 public java.lang.String com.rmm.adapter.api.VariabilityTree.name()
+0 public java.lang.String com.rmm.adapter.api.VariabilityVariant.code()
+0 public java.lang.String com.rmm.adapter.api.VariabilityVariant.description()
+0 public java.lang.String com.rmm.adapter.api.VariabilityVariant.name()
+0 public java.lang.Throwable com.rmm.adapter.api.ElementFailure.cause()
+0 public java.net.URI com.rmm.adapter.api.AdapterRequest.uri()
+0 public java.net.URI com.rmm.adapter.api.AdapterResponse.uri()
+0 public java.net.URI com.rmm.adapter.api.StreamResponse.uri()
+0 public java.nio.charset.Charset com.rmm.adapter.api.Auth$Basic.charset()
+0 public java.time.Instant com.rmm.adapter.api.ReadScope.changedSince()
+0 public java.time.Instant com.rmm.adapter.api.SyncRunContext.deadline()
+0 public java.time.Instant com.rmm.adapter.api.TokenProvider$Token.expiresAt()
+0 public java.util.List<T> com.rmm.adapter.api.SourcePage.elements()
+0 public java.util.List<com.rmm.adapter.api.ConfigKey> com.rmm.adapter.api.AdapterDescriptor.configKeys()
+0 public java.util.List<com.rmm.adapter.api.ElementFailure> com.rmm.adapter.api.SourcePage.failures()
+0 public java.util.List<com.rmm.adapter.api.IdentifierKind> com.rmm.adapter.api.AdapterDescriptor.identifierKinds()
+0 public java.util.List<com.rmm.adapter.api.VariabilityConstraint> com.rmm.adapter.api.VariabilityTree.constraints()
+0 public java.util.List<com.rmm.adapter.api.VariabilityFeature> com.rmm.adapter.api.VariabilityTree.features()
+0 public java.util.List<java.lang.String> com.rmm.adapter.api.AdapterResponse.headerValues(java.lang.String)
+0 public java.util.List<java.lang.String> com.rmm.adapter.api.ElementFeatures.featureNames()
+0 public java.util.List<java.lang.String> com.rmm.adapter.api.IdentifierKind.readIds(java.lang.String)
+0 public java.util.List<java.lang.String> com.rmm.adapter.api.SourcePage.completeParentIds()
+0 public java.util.List<java.lang.String> com.rmm.adapter.api.SourcePage.deletedIds()
+0 public java.util.List<java.lang.String> com.rmm.adapter.api.StreamResponse.headerValues(java.lang.String)
+0 public java.util.List<java.lang.String> com.rmm.adapter.api.TargetOutcome.notes()
+0 public java.util.List<java.lang.String> com.rmm.adapter.api.VariabilityVariant.selectedFeatures()
+0 public java.util.Map<java.lang.String, java.lang.String> com.rmm.adapter.api.TargetOutcome.notApplied()
+0 public java.util.Map<java.lang.String, java.util.List<java.lang.String>> com.rmm.adapter.api.AdapterRequest.headers()
+0 public java.util.Map<java.lang.String, java.util.List<java.lang.String>> com.rmm.adapter.api.AdapterResponse.headers()
+0 public java.util.Map<java.lang.String, java.util.List<java.lang.String>> com.rmm.adapter.api.StreamResponse.headers()
+0 public java.util.Optional<com.rmm.adapter.api.Body> com.rmm.adapter.api.AdapterRequest.body()
+0 public java.util.Optional<com.rmm.adapter.api.SyncRunContext> com.rmm.adapter.api.AdapterRequest.run()
+0 public java.util.Optional<java.lang.String> com.rmm.adapter.api.AdapterRequest.header(java.lang.String)
+0 public java.util.Optional<java.lang.String> com.rmm.adapter.api.AdapterResponse.header(java.lang.String)
+0 public java.util.Optional<java.lang.String> com.rmm.adapter.api.Body.contentType()
+0 public java.util.Optional<java.lang.String> com.rmm.adapter.api.StreamResponse.header(java.lang.String)
+0 public java.util.Optional<java.net.URI> com.rmm.adapter.api.HostLimits.publicUrl()
+0 public java.util.Optional<java.time.Duration> com.rmm.adapter.api.AdapterRequest.timeout()
+0 public java.util.OptionalInt com.rmm.adapter.api.AdapterException.httpStatus()
+0 public java.util.OptionalLong com.rmm.adapter.api.HostLimits.maxAttachmentBytes()
+0 public java.util.OptionalLong com.rmm.adapter.api.StreamResponse.length()
+0 public java.util.Set<com.rmm.adapter.api.BulkOperation> com.rmm.adapter.api.AdapterCapabilities.bulkOperations()
+0 public java.util.Set<com.rmm.adapter.api.SyncDirection> com.rmm.adapter.api.AdapterCapabilities.directions()
+0 public java.util.Set<com.rmm.adapter.api.SyncPhase> com.rmm.adapter.api.AdapterCapabilities.reads()
+0 public java.util.Set<com.rmm.adapter.api.SyncPhase> com.rmm.adapter.api.AdapterCapabilities.writes()
+0 public java.util.Set<java.lang.String> com.rmm.adapter.api.AdapterRequest.sensitiveHeaders()
+0 public java.util.Set<java.lang.String> com.rmm.adapter.api.ReadScope.elementIds()
+0 public java.util.Set<java.lang.String> com.rmm.adapter.api.TargetOutcome.appliedFields()
+0 public java.util.UUID com.rmm.adapter.api.SyncRunContext.runId()
+0 public long com.rmm.adapter.api.AttachmentContent.byteCount()
+0 public long com.rmm.adapter.api.Body.length()
+0 public static <T> com.rmm.adapter.api.SourcePage<T> com.rmm.adapter.api.SourcePage.empty()
+0 public static boolean com.rmm.adapter.api.RedirectPolicy.sameOrigin(java.net.URI,java.net.URI)
+0 public static com.rmm.adapter.api.AdapterRequest com.rmm.adapter.api.AdapterRequest.delete(java.net.URI)
+0 public static com.rmm.adapter.api.AdapterRequest com.rmm.adapter.api.AdapterRequest.get(java.net.URI)
+0 public static com.rmm.adapter.api.AdapterRequest com.rmm.adapter.api.AdapterRequest.head(java.net.URI)
+0 public static com.rmm.adapter.api.AdapterRequest com.rmm.adapter.api.AdapterRequest.post(java.net.URI,com.rmm.adapter.api.Body)
+0 public static com.rmm.adapter.api.AdapterRequest com.rmm.adapter.api.AdapterRequest.put(java.net.URI,com.rmm.adapter.api.Body)
+0 public static com.rmm.adapter.api.AdapterRequest$Builder com.rmm.adapter.api.AdapterRequest.builder(java.lang.String,java.net.URI)
+0 public static com.rmm.adapter.api.AdapterStoreLimitException$Limit com.rmm.adapter.api.AdapterStoreLimitException$Limit.valueOf(java.lang.String)
+0 public static com.rmm.adapter.api.AdapterStoreLimitException$Limit[] com.rmm.adapter.api.AdapterStoreLimitException$Limit.values()
+0 public static com.rmm.adapter.api.Auth com.rmm.adapter.api.Auth.basic(java.lang.String,com.rmm.adapter.api.SecretValue)
+0 public static com.rmm.adapter.api.Auth com.rmm.adapter.api.Auth.basic(java.lang.String,com.rmm.adapter.api.SecretValue,java.nio.charset.Charset)
+0 public static com.rmm.adapter.api.Auth com.rmm.adapter.api.Auth.bearer(com.rmm.adapter.api.SecretValue)
+0 public static com.rmm.adapter.api.Auth com.rmm.adapter.api.Auth.oauth(com.rmm.adapter.api.TokenProvider)
+0 public static com.rmm.adapter.api.Body com.rmm.adapter.api.Body.ofBytes(byte[],java.lang.String)
+0 public static com.rmm.adapter.api.Body com.rmm.adapter.api.Body.ofJson(java.lang.String)
+0 public static com.rmm.adapter.api.Body com.rmm.adapter.api.Body.ofStream(long,java.lang.String,com.rmm.adapter.api.Body$Source)
+0 public static com.rmm.adapter.api.Body com.rmm.adapter.api.Body.ofString(java.lang.String,java.lang.String)
+0 public static com.rmm.adapter.api.BulkOperation com.rmm.adapter.api.BulkOperation.valueOf(java.lang.String)
+0 public static com.rmm.adapter.api.BulkOperation[] com.rmm.adapter.api.BulkOperation.values()
+0 public static com.rmm.adapter.api.ConfigKey com.rmm.adapter.api.ConfigKey.optional(java.lang.String,com.rmm.adapter.api.ConfigType,java.lang.String,java.lang.String)
+0 public static com.rmm.adapter.api.ConfigKey com.rmm.adapter.api.ConfigKey.platform(java.lang.String,com.rmm.adapter.api.ConfigType,java.lang.String,java.lang.String)
+0 public static com.rmm.adapter.api.ConfigKey com.rmm.adapter.api.ConfigKey.required(java.lang.String,com.rmm.adapter.api.ConfigType,java.lang.String)
+0 public static com.rmm.adapter.api.ConfigScope com.rmm.adapter.api.ConfigScope.valueOf(java.lang.String)
+0 public static com.rmm.adapter.api.ConfigScope[] com.rmm.adapter.api.ConfigScope.values()
+0 public static com.rmm.adapter.api.ConfigType com.rmm.adapter.api.ConfigType.valueOf(java.lang.String)
+0 public static com.rmm.adapter.api.ConfigType[] com.rmm.adapter.api.ConfigType.values()
+0 public static com.rmm.adapter.api.ElementFailure com.rmm.adapter.api.ElementFailure.of(java.lang.String,java.lang.String)
+0 public static com.rmm.adapter.api.HierarchyModel com.rmm.adapter.api.HierarchyModel.valueOf(java.lang.String)
+0 public static com.rmm.adapter.api.HierarchyModel[] com.rmm.adapter.api.HierarchyModel.values()
+0 public static com.rmm.adapter.api.HostLimits com.rmm.adapter.api.HostLimits.unknown()
+0 public static com.rmm.adapter.api.IdentifierKind com.rmm.adapter.api.IdentifierKind.of(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+0 public static com.rmm.adapter.api.Multipart$Builder com.rmm.adapter.api.Multipart.builder()
+0 public static com.rmm.adapter.api.ReadScope com.rmm.adapter.api.ReadScope.full()
+0 public static com.rmm.adapter.api.ReadScope com.rmm.adapter.api.ReadScope.ofIds(java.util.Collection<java.lang.String>)
+0 public static com.rmm.adapter.api.ReadScope com.rmm.adapter.api.ReadScope.since(java.time.Instant)
+0 public static com.rmm.adapter.api.RedirectPolicy com.rmm.adapter.api.RedirectPolicy.follow(int)
+0 public static com.rmm.adapter.api.RedirectPolicy com.rmm.adapter.api.RedirectPolicy.never()
+0 public static com.rmm.adapter.api.SecretValue com.rmm.adapter.api.SecretValue.of(java.lang.String)
+0 public static com.rmm.adapter.api.SyncDirection com.rmm.adapter.api.SyncDirection.valueOf(java.lang.String)
+0 public static com.rmm.adapter.api.SyncDirection[] com.rmm.adapter.api.SyncDirection.values()
+0 public static com.rmm.adapter.api.SyncPhase com.rmm.adapter.api.SyncPhase.valueOf(java.lang.String)
+0 public static com.rmm.adapter.api.SyncPhase[] com.rmm.adapter.api.SyncPhase.values()
+0 public static com.rmm.adapter.api.TargetOutcome com.rmm.adapter.api.TargetOutcome.applied(java.util.Collection<java.lang.String>)
+0 public static com.rmm.adapter.api.TargetOutcome com.rmm.adapter.api.TargetOutcome.applied(java.util.Collection<java.lang.String>,java.util.Map<java.lang.String, java.lang.String>)
+0 public static com.rmm.adapter.api.TargetOutcome com.rmm.adapter.api.TargetOutcome.failure(java.lang.Exception)
+0 public static com.rmm.adapter.api.TargetOutcome com.rmm.adapter.api.TargetOutcome.skipped(java.lang.String)
+0 public static com.rmm.adapter.api.TargetOutcome com.rmm.adapter.api.TargetOutcome.success()
+0 public static com.rmm.adapter.api.TargetOutcome com.rmm.adapter.api.TargetOutcome.success(java.lang.String)
+0 public static final class com.rmm.adapter.api.AdapterRequest$Builder
+0 public static final class com.rmm.adapter.api.Multipart$Builder
+0 public static final com.rmm.adapter.api.AdapterHttp$Awaiting com.rmm.adapter.api.AdapterHttp$Awaiting.NOTHING
+0 public static final com.rmm.adapter.api.AdapterStoreLimitException$Limit com.rmm.adapter.api.AdapterStoreLimitException$Limit.CONNECTION_DOCUMENTS
+0 public static final com.rmm.adapter.api.AdapterStoreLimitException$Limit com.rmm.adapter.api.AdapterStoreLimitException$Limit.DOCUMENT_SIZE
+0 public static final com.rmm.adapter.api.AdapterStoreLimitException$Limit com.rmm.adapter.api.AdapterStoreLimitException$Limit.TENANT_DOCUMENTS
+0 public static final com.rmm.adapter.api.BulkOperation com.rmm.adapter.api.BulkOperation.ARTIFACT_CREATE
+0 public static final com.rmm.adapter.api.BulkOperation com.rmm.adapter.api.BulkOperation.ARTIFACT_DELETE
+0 public static final com.rmm.adapter.api.BulkOperation com.rmm.adapter.api.BulkOperation.ARTIFACT_HIERARCHY_UPDATE
+0 public static final com.rmm.adapter.api.BulkOperation com.rmm.adapter.api.BulkOperation.ARTIFACT_UPDATE
+0 public static final com.rmm.adapter.api.BulkOperation com.rmm.adapter.api.BulkOperation.COMMENT_CREATE
+0 public static final com.rmm.adapter.api.BulkOperation com.rmm.adapter.api.BulkOperation.RELATIONSHIP_CREATE
+0 public static final com.rmm.adapter.api.BulkOperation com.rmm.adapter.api.BulkOperation.RELATIONSHIP_DELETE
+0 public static final com.rmm.adapter.api.BulkOperation com.rmm.adapter.api.BulkOperation.RELATIONSHIP_UPDATE
+0 public static final com.rmm.adapter.api.ConfigScope com.rmm.adapter.api.ConfigScope.BINDING
+0 public static final com.rmm.adapter.api.ConfigScope com.rmm.adapter.api.ConfigScope.PLATFORM
+0 public static final com.rmm.adapter.api.ConfigType com.rmm.adapter.api.ConfigType.BOOLEAN
+0 public static final com.rmm.adapter.api.ConfigType com.rmm.adapter.api.ConfigType.CERTIFICATE
+0 public static final com.rmm.adapter.api.ConfigType com.rmm.adapter.api.ConfigType.INTEGER
+0 public static final com.rmm.adapter.api.ConfigType com.rmm.adapter.api.ConfigType.PATH
+0 public static final com.rmm.adapter.api.ConfigType com.rmm.adapter.api.ConfigType.SECRET
+0 public static final com.rmm.adapter.api.ConfigType com.rmm.adapter.api.ConfigType.STRING
+0 public static final com.rmm.adapter.api.ConfigType com.rmm.adapter.api.ConfigType.URL
+0 public static final com.rmm.adapter.api.HierarchyModel com.rmm.adapter.api.HierarchyModel.FLAT
+0 public static final com.rmm.adapter.api.HierarchyModel com.rmm.adapter.api.HierarchyModel.NATIVE_TREE
+0 public static final com.rmm.adapter.api.HierarchyModel com.rmm.adapter.api.HierarchyModel.PATH_ATTRIBUTE
+0 public static final com.rmm.adapter.api.SyncDirection com.rmm.adapter.api.SyncDirection.FROM_RMM
+0 public static final com.rmm.adapter.api.SyncDirection com.rmm.adapter.api.SyncDirection.TO_RMM
+0 public static final com.rmm.adapter.api.SyncPhase com.rmm.adapter.api.SyncPhase.ARTIFACTS
+0 public static final com.rmm.adapter.api.SyncPhase com.rmm.adapter.api.SyncPhase.ATTACHMENTS
+0 public static final com.rmm.adapter.api.SyncPhase com.rmm.adapter.api.SyncPhase.COMMENTS
+0 public static final com.rmm.adapter.api.SyncPhase com.rmm.adapter.api.SyncPhase.RELATIONSHIPS
+0 public static final com.rmm.adapter.api.SyncPhase com.rmm.adapter.api.SyncPhase.VARIABILITY
+0 public static final enum com.rmm.adapter.api.AdapterStoreLimitException$Limit
+0 public static final int com.rmm.adapter.api.AdapterApiVersion.MAJOR = 1
+0 public static final int com.rmm.adapter.api.DocumentCollection.MAX_ID_LENGTH = 512
+0 public static final int com.rmm.adapter.api.DocumentCollection.MAX_PAGE = 1000
+0 public static final int com.rmm.adapter.api.RedirectPolicy.MAX_HOPS = 10
+0 public static final java.lang.String com.rmm.adapter.api.AdapterConventions.CHILD_TYPE_FIELD = "Child Type"
+0 public static final java.lang.String com.rmm.adapter.api.AdapterConventions.COMMENT_AUTHOR_FIELD = "Author"
+0 public static final java.lang.String com.rmm.adapter.api.AdapterConventions.COMMENT_BODY_FIELD = "Body"
+0 public static final java.lang.String com.rmm.adapter.api.AdapterConventions.COMMENT_IN_REPLY_TO_FIELD = "InReplyTo"
+0 public static final java.lang.String com.rmm.adapter.api.AdapterConventions.HTTP_RATE_PER_SECOND_KEY = "http.rate.per.second"
+0 public static final java.lang.String com.rmm.adapter.api.AdapterConventions.HTTP_RETRIES_KEY = "http.retries"
+0 public static final java.lang.String com.rmm.adapter.api.AdapterStoreLimitException.MESSAGE = "adapter store limit reached"
+0 public static final java.lang.String com.rmm.adapter.api.IdentifierKind.DEFAULT_SAMPLE = "ABC-123"
+0 public static final java.lang.String com.rmm.adapter.api.IdentifierKind.ID_PLACEHOLDER = "{id}"
+0 public static final record com.rmm.adapter.api.Auth$Basic implements com.rmm.adapter.api.Auth
+0 public static final record com.rmm.adapter.api.Auth$Bearer implements com.rmm.adapter.api.Auth
+0 public static final record com.rmm.adapter.api.Auth$OAuth implements com.rmm.adapter.api.Auth
+0 public static final record com.rmm.adapter.api.DocumentCollection$Document
+0 public static final record com.rmm.adapter.api.TokenProvider$Token
+0 public static java.lang.String com.rmm.adapter.api.AdapterConventions.mappingFileNameFor(java.lang.String)
+0 public static java.lang.String com.rmm.adapter.api.AdapterRequest.forLog(java.net.URI)
+0 public static java.lang.String com.rmm.adapter.api.IdentifierKind.roundTripSampleOf(java.lang.String,java.lang.String,java.lang.String)
+0 public static java.util.Optional<java.lang.String> com.rmm.adapter.api.RedirectPolicy.refusal(com.rmm.adapter.api.AdapterRequest,int,java.net.URI,java.net.URI,int)
+0 public static java.util.Set<com.rmm.adapter.api.SyncPhase> com.rmm.adapter.api.SyncPhase.all()
+0 public static java.util.Set<com.rmm.adapter.api.SyncPhase> com.rmm.adapter.api.SyncPhase.allWithAttachments()
+0 public static java.util.Set<com.rmm.adapter.api.SyncPhase> com.rmm.adapter.api.SyncPhase.allWithVariability()
+0 public static java.util.Set<com.rmm.adapter.api.SyncPhase> com.rmm.adapter.api.SyncPhase.artifactsOnly()
+0 public void com.rmm.adapter.api.AttachmentContent.close() throws java.io.IOException
+0 public void com.rmm.adapter.api.StreamResponse.close() throws java.io.IOException
+1 public com.rmm.adapter.api.AdapterCapabilities com.rmm.adapter.api.AdapterCapabilities.withImageReferenceForms(java.util.Set<com.rmm.adapter.api.ImageReferenceForm>)
+1 public com.rmm.adapter.api.AdapterCapabilities(java.util.Set<com.rmm.adapter.api.SyncDirection>,com.rmm.adapter.api.HierarchyModel,boolean,boolean,boolean,boolean,java.util.Set<com.rmm.adapter.api.SyncPhase>,java.util.Set<com.rmm.adapter.api.SyncPhase>,java.util.Set<com.rmm.adapter.api.BulkOperation>,com.rmm.adapter.api.RateLimit,java.util.Set<com.rmm.adapter.api.ImageReferenceForm>)
+1 public com.rmm.adapter.api.AdapterDescriptor(java.lang.String,java.lang.String,java.lang.String,int,com.rmm.adapter.api.AdapterCapabilities,java.util.List<com.rmm.adapter.api.ConfigKey>,java.util.List<com.rmm.adapter.api.IdentifierKind>,int)
+1 public com.rmm.adapter.api.AdapterInitialisationException$Reason com.rmm.adapter.api.AdapterInitialisationException.reason()
+1 public com.rmm.adapter.api.AdapterInitialisationException(java.lang.String,com.rmm.adapter.api.AdapterInitialisationException$Reason,java.lang.Throwable)
+1 public com.rmm.adapter.api.ImageReferenceForm$Kind com.rmm.adapter.api.ImageReferenceForm.kind()
+1 public com.rmm.adapter.api.ImageReferenceForm(com.rmm.adapter.api.ImageReferenceForm$Kind,java.lang.String)
+1 public default java.util.Optional<java.util.List<com.rmm.adapter.api.IdentifierKind>> com.rmm.adapter.api.AdapterInstance.identifierKinds()
+1 public final boolean com.rmm.adapter.api.ImageReferenceForm.equals(java.lang.Object)
+1 public final int com.rmm.adapter.api.ImageReferenceForm.hashCode()
+1 public final java.lang.String com.rmm.adapter.api.ImageReferenceForm.toString()
+1 public final record com.rmm.adapter.api.ImageReferenceForm
+1 public int com.rmm.adapter.api.AdapterDescriptor.apiMinorVersion()
+1 public java.lang.String com.rmm.adapter.api.ImageReferenceForm.example()
+1 public java.lang.String com.rmm.adapter.api.ImageReferenceForm.value()
+1 public java.util.Optional<java.lang.String> com.rmm.adapter.api.ImageReferenceForm.admit(java.lang.String)
+1 public java.util.Set<com.rmm.adapter.api.ImageReferenceForm> com.rmm.adapter.api.AdapterCapabilities.imageReferenceForms()
+1 public static com.rmm.adapter.api.AdapterInitialisationException$Reason com.rmm.adapter.api.AdapterInitialisationException$Reason.valueOf(java.lang.String)
+1 public static com.rmm.adapter.api.AdapterInitialisationException$Reason[] com.rmm.adapter.api.AdapterInitialisationException$Reason.values()
+1 public static com.rmm.adapter.api.ImageReferenceForm com.rmm.adapter.api.ImageReferenceForm.pathTemplate(java.lang.String)
+1 public static com.rmm.adapter.api.ImageReferenceForm com.rmm.adapter.api.ImageReferenceForm.scheme(java.lang.String)
+1 public static com.rmm.adapter.api.ImageReferenceForm$Kind com.rmm.adapter.api.ImageReferenceForm$Kind.valueOf(java.lang.String)
+1 public static com.rmm.adapter.api.ImageReferenceForm$Kind[] com.rmm.adapter.api.ImageReferenceForm$Kind.values()
+1 public static final com.rmm.adapter.api.AdapterInitialisationException$Reason com.rmm.adapter.api.AdapterInitialisationException$Reason.PROTOCOL_TOO_OLD
+1 public static final com.rmm.adapter.api.AdapterInitialisationException$Reason com.rmm.adapter.api.AdapterInitialisationException$Reason.UNSPECIFIED
+1 public static final com.rmm.adapter.api.ConfigType com.rmm.adapter.api.ConfigType.CLIENT_IDENTITY
+1 public static final com.rmm.adapter.api.ImageReferenceForm$Kind com.rmm.adapter.api.ImageReferenceForm$Kind.PATH_TEMPLATE
+1 public static final com.rmm.adapter.api.ImageReferenceForm$Kind com.rmm.adapter.api.ImageReferenceForm$Kind.SCHEME
+1 public static final enum com.rmm.adapter.api.AdapterInitialisationException$Reason
+1 public static final enum com.rmm.adapter.api.ImageReferenceForm$Kind
+1 public static final int com.rmm.adapter.api.AdapterApiVersion.MINOR
+1 public static final java.lang.String com.rmm.adapter.api.AdapterConventions.CONNECT_TIMEOUT_KEY = "timeout.connect"
+1 public static final java.lang.String com.rmm.adapter.api.ImageReferenceForm.CTX = "{ctx}"
+1 public static final java.lang.String com.rmm.adapter.api.ImageReferenceForm.FILE = "{file}"
+1 public static final java.lang.String com.rmm.adapter.api.ImageReferenceForm.NUMBER = "{number}"
+1 public static final java.util.Set<java.lang.String> com.rmm.adapter.api.ImageReferenceForm.BANNED_SCHEMES
+1 public static final java.util.Set<java.lang.String> com.rmm.adapter.api.ImageReferenceForm.RMM_ROUTES
+1 public static final java.util.regex.Pattern com.rmm.adapter.api.ImageReferenceForm.FILE_NAME
+1 public static java.util.List<java.lang.String> com.rmm.adapter.api.ImageReferenceForm.problemsOf(com.rmm.adapter.api.ImageReferenceForm$Kind,java.lang.String)

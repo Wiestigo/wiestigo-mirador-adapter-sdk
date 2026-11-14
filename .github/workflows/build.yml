@@ -1,0 +1,41 @@
+name: Build
+
+# Builds the SDK and runs all tests, including the TCKs against both templates. On JDK 17 (the contract
+# is Java 17: the minimum an adapter author has) and on JDK 25 (the host runs on it and loads the
+# adapters there).
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        java: ['17', '25']
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up JDK ${{ matrix.java }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ matrix.java }}
+        distribution: 'corretto'
+        cache: maven
+
+    - name: Build and test
+      run: mvn -B verify

@@ -1,0 +1,11 @@
+# Line endings: Git detects text itself and normalizes it in the repository.
+* text=auto
+
+# Executed or read in containers and in CI: always LF.
+*.sh            text eol=lf
+*.properties    text eol=lf
+*.yaml          text eol=lf
+*.yml           text eol=lf
+
+# The pinned signature list is compared line by line: the same bytes on every platform.
+rmm_adapter_api/src/test/resources/frozen-api/*.txt text eol=lf

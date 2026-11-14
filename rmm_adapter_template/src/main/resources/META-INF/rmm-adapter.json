@@ -1,0 +1,19 @@
+{
+  "_comment": "Manifest of the plugin unit. It must match the descriptor of the adapter (TCK case 6). The host reads it without running code of the unit: when the jar is uploaded, before loading (apiMinor), when it registers the adapter against its descriptor, and to show the unit before its release. The mapping template is always META-INF/rmm-adapter/mapping-template.json; the manifest names no path for it.",
+  "typeKey": "CSVTOOL",
+  "name": "CSV Example Tool",
+  "version": "1.0.0",
+  "vendor": "Example",
+  "apiMajor": 1,
+  "apiMinor": 1,
+  "configKeys": [
+    { "key": "source.file", "type": "PATH", "scope": "PLATFORM", "required": false },
+    { "key": "csv.url", "type": "URL", "scope": "BINDING", "required": false },
+    { "key": "page.size", "type": "INTEGER", "scope": "BINDING", "required": false }
+  ],
+  "capabilities": {
+    "directions": ["TO_RMM"],
+    "hierarchyModel": "FLAT",
+    "imageReferenceForms": []
+  }
+}

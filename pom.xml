@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Parent module of the Wiestigo Mirador Adapter SDK: the adapter contract and everything needed
+    to build an adapter or a remote service (transfer model, contract, Spring facade, the TCKs,
+    the templates). The SDK builds on its own, with any JDK from 17.
+
+    The version follows the frozen contract (major 1, minor 1 = 1.1.x). The Java packages
+    (com.rmm.adapter.api, com.io_elements) are part of the contract.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        Used only for the versions of libraries and plugins (Spring Framework for the Spring
+        facade, Jackson 3, JUnit, BSON, slf4j): the ones the host runs with. From Maven Central.
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.2</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.wiestigo.mirador</groupId>
+    <artifactId>rmm_adapter_sdk</artifactId>
+    <version>1.1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Wiestigo Mirador Adapter SDK</name>
+    <description>
+        The published adapter contract of Wiestigo Mirador with transfer model, TCKs and
+        templates: everything needed to build an adapter or a remote service and to test it
+        against the contract.
+    </description>
+
+    <modules>
+        <!-- The transfer model and the mapping (com.io_elements) -->
+        <module>rmm_adapter_model</module>
+        <!-- The contract (com.rmm.adapter.api) -->
+        <module>rmm_adapter_api</module>
+        <!-- The Spring facade: Spring clients over the host's HTTP path -->
+        <module>rmm_adapter_http_spring</module>
+        <!-- The contract tests for an adapter -->
+        <module>rmm_adapter_tck</module>
+        <!-- The contract tests for a remote service, over HTTP -->
+        <module>rmm_remote_tck</module>
+        <!-- The template of a remote service, tested with rmm_remote_tck -->
+        <module>rmm_remote_service_template</module>
+        <!-- The template of an adapter, tested with rmm_adapter_tck (does not inherit from this parent: made to be copied) -->
+        <module>rmm_adapter_template</module>
+    </modules>
+
+    <properties>
+        <!--
+            The adapter contract stays on Java 17 although the host runs on Java 25: an adapter
+            or a remote service builds with any JDK from 17. The Spring Boot parent derives
+            maven.compiler.release from this property; no SDK module sets its own.
+        -->
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- Published to the GitHub Packages of this repository (.github/workflows/release.yml) -->
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/Wiestigo/wiestigo-mirador-adapter-sdk</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!--
+                    From JDK 23, annotation processors on the class path do not run on their
+                    own (-proc:none is the default). Lombok is the only one (in the transfer
+                    model); it is named explicitly instead of using -proc:full, so that no other
+                    library brings in a processor unnoticed.
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- The sources of each module as -sources.jar next to the jar (for the IDE) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--
+                Both templates as a zip attached to this parent module (classifier templates):
+                rmm_adapter_template/ and rmm_remote_service_template/ as projects to copy, for
+                those who get the SDK as artifacts and not from this repository. Runs only here,
+                not in the modules.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>templates</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/assembly/templates.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

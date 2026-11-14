@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wiestigo.mirador</groupId>
+        <artifactId>rmm_adapter_sdk</artifactId>
+        <version>1.1.0</version>
+    </parent>
+
+    <artifactId>rmm_adapter_tck</artifactId>
+    <packaging>jar</packaging>
+
+    <name>rmm_adapter_tck</name>
+    <description>
+        Technology Compatibility Kit of the Mirador adapter interface: a test harness
+        that lets adapter authors test their ToolAdapter against the contract without a
+        running Mirador host. It checks capability consistency, cursor semantics and
+        error isolation and, optionally against the author's own tool, reading and
+        round trips. Contains the InMemoryToolAdapter as a complete reference
+        implementation of the contract.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.wiestigo.mirador</groupId>
+            <artifactId>rmm_adapter_api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!--
+            The driver's BSON (already transitive through rmm_adapter_api, declared
+            explicitly here): the TCK's document stores measure a document's size
+            in BSON as MongoDB does and return it the way the driver reads it.
+            The version comes from the Spring Boot BOM.
+        -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>bson</artifactId>
+        </dependency>
+        <!--
+            Scope provided on purpose: the abstract AdapterContractTest base
+            class is JUnit code that the adapter author extends in test scope.
+            The author's project chooses the JUnit version (junit-jupiter in
+            test scope); provided keeps the TCK from pulling a second JUnit
+            version into that build.
+        -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Testing (only this module's self-tests) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

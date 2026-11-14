@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Template project for a Mirador tool adapter.
+
+    It has no parent POM on purpose: the project is meant to be copied and
+    builds on its own as soon as rmm_adapter_api and rmm_adapter_tck are in
+    the Maven repository (run "mvn install" once in a checkout of the adapter
+    SDK, with any JDK from 17). To make it yours: rename groupId and
+    artifactId, replace the example adapter and update the ServiceLoader file
+    under META-INF/services.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example.adapter</groupId>
+    <artifactId>csvtool-adapter</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>csvtool-adapter</name>
+    <description>
+        Example adapter for Mirador: reads requirements from a CSV file.
+        Template for your own tool adapter; see README.md and
+        docs/DEVELOPER_GUIDE.md in the repository of the adapter SDK.
+    </description>
+
+    <properties>
+        <!--
+            The adapter contract is Java 17: an adapter builds with any JDK from 17 and runs in the
+            host (Java 25). "release" instead of source/target also checks the API use against Java 17.
+        -->
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <rmm.adapter.api.version>1.1.0</rmm.adapter.api.version>
+        <junit.version>6.0.3</junit.version>
+    </properties>
+
+    <dependencies>
+        <!--
+            Provided: at run time the contract comes from the host, whose
+            plugin class loader passes com.rmm.adapter.api and com.io_elements
+            through. It must not go into the shaded jar: the contract classes
+            would exist twice and type assignments would fail.
+        -->
+        <dependency>
+            <groupId>com.wiestigo.mirador</groupId>
+            <artifactId>rmm_adapter_api</artifactId>
+            <version>${rmm.adapter.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- The TCK checks the adapter against the contract, without a running Mirador. -->
+        <dependency>
+            <groupId>com.wiestigo.mirador</groupId>
+            <artifactId>rmm_adapter_tck</artifactId>
+            <version>${rmm.adapter.api.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--
+            The rule "network only through context.http()" as a test
+            (TestCsvToolNetworkPathRule): no HTTP client of its own in the adapter.
+        -->
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit</artifactId>
+            <version>1.5.1</version>
+            <scope>test</scope>
+            <!-- slf4j comes with the contract (provided); no second version -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+                Standalone project: the compiler plugin is pinned. Maven up to 3.8 (Debian bookworm,
+                Ubuntu 24.04) otherwise picks maven-compiler-plugin 3.1, which does not know
+                maven.compiler.release and falls back to Java 5.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.15.0</version>
+            </plugin>
+            <!-- Standalone project: Surefire is pinned to a version for the JUnit Platform (JUnit 6; 5.x works too) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.4</version>
+                <configuration>
+                    <!--
+                        TCK case 5: an adapter reads configuration only from
+                        config(), never from system properties or the environment.
+                        The TCK sets traps in the system properties itself;
+                        environment variables cannot be set in a running process,
+                        so their traps are set here. Two names per declared key:
+                        the key itself (source.file becomes SOURCE_FILE) and the
+                        namespace of the host (RMM_ADAPTER_<SYSTEMKEY>_<KEY>).
+                        Every value starts with "tck-poison": that is how the TCK
+                        recognizes a trap, and it reports one as soon as it shows
+                        up in elements, the log or a store. For your own adapter,
+                        enter the names of its keys.
+                    -->
+                    <environmentVariables>
+                        <SOURCE_FILE>tck-poison-env-source-file</SOURCE_FILE>
+                        <RMM_ADAPTER_CSVTOOL_SOURCE_FILE>tck-poison-env-source-file</RMM_ADAPTER_CSVTOOL_SOURCE_FILE>
+                        <CSV_URL>tck-poison-env-csv-url</CSV_URL>
+                        <RMM_ADAPTER_CSVTOOL_CSV_URL>tck-poison-env-csv-url</RMM_ADAPTER_CSVTOOL_CSV_URL>
+                        <PAGE_SIZE>tck-poison-env-page-size</PAGE_SIZE>
+                        <RMM_ADAPTER_CSVTOOL_PAGE_SIZE>tck-poison-env-page-size</RMM_ADAPTER_CSVTOOL_PAGE_SIZE>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
+            <!--
+                The delivery format: one self-contained shaded jar per adapter.
+                Add your own libraries (JSON, ...) as ordinary compile
+                dependencies: Shade packs them into the jar, and the plugin
+                class loader of the host keeps them apart from the host.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <!-- Merge the ServiceLoader declarations of several jars -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wiestigo.mirador</groupId>
+        <artifactId>rmm_adapter_sdk</artifactId>
+        <version>1.1.0</version>
+    </parent>
+
+    <artifactId>rmm_adapter_api</artifactId>
+    <packaging>jar</packaging>
+
+    <name>rmm_adapter_api</name>
+    <description>
+        The published contract of the standard adapter interface (SPI) against which
+        tool adapters are developed. Deliberately minimal: only interfaces, records and
+        enums plus the transfer model (rmm_adapter_model); no Spring, no MongoDB, no
+        host internals.
+    </description>
+
+    <dependencies>
+        <!--
+            The only module dependency: the tool-neutral transfer model
+            (com.io_elements). Adapters work with the Element* classes in both
+            directions; the API defines no model classes of its own.
+        -->
+        <dependency>
+            <groupId>com.wiestigo.mirador</groupId>
+            <artifactId>rmm_adapter_model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!--
+            The logging facade is part of the contract: the host passes org.slf4j to every plugin
+            (next to com.rmm.adapter.api and com.io_elements). The version comes from the Spring Boot BOM.
+        -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <!-- TESTING -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>unit-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>**/Test*.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>integration-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <includes>
+                                <include>**/IT*.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wiestigo.mirador</groupId>
+        <artifactId>rmm_adapter_sdk</artifactId>
+        <version>1.1.0</version>
+    </parent>
+
+    <artifactId>rmm_remote_service_template</artifactId>
+    <packaging>jar</packaging>
+
+    <name>rmm_remote_service_template</name>
+    <description>
+        Template of a remote adapter service for protocol version 4: Java 17 and only the
+        JDK. An HttpsServer that requires a client certificate, the pinned certificates of
+        the connections, X-RMM-Binding checked against the certificate, and the version 4
+        endpoints backed by an in-memory tool per binding. Tests itself with the TCK for
+        remote services (rmm_remote_tck) in the reactor. Guide for the operator: README.md.
+    </description>
+
+    <!--
+        The main code has NO dependency: only the JDK (com.sun.net.httpserver,
+        javax.net.ssl, java.security). The dependencies below are for the tests only.
+    -->
+    <dependencies>
+        <!-- The TCK for remote services: RemoteServiceContractTest (brings Jackson) -->
+        <dependency>
+            <groupId>com.wiestigo.mirador</groupId>
+            <artifactId>rmm_remote_tck</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
