@@ -1,10 +1,2 @@
 Wiestigo Mirador Adapter SDK
 Copyright 2026 Wiestigo UG (haftungsbeschränkt)
-
-This product is licensed under the Apache License, Version 2.0 (see LICENSE).
-The templates in rmm_adapter_template and rmm_remote_service_template are
-licensed under the MIT No Attribution License (MIT-0); see the LICENSE file in
-each of these directories.
-
-"Wiestigo" and "Mirador" are names of Wiestigo UG (haftungsbeschränkt). The
-license grants no rights to use them (Apache License 2.0, section 6).

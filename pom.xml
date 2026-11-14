@@ -45,7 +45,7 @@
         <name>Wiestigo UG (haftungsbeschränkt)</name>
     </organization>
 
-    <!-- Inherited by every module. The templates are MIT-0 (their own LICENSE files). -->
+    <!-- Inherited by the modules with this parent; the templates are MIT-0 (their own LICENSE files) -->
     <licenses>
         <license>
             <name>Apache-2.0</name>
