@@ -46,4 +46,20 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <!-- The jar of the template carries the template's own license (MIT-0), not the SDK's -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${project.basedir}</directory>
+                <includes>
+                    <include>LICENSE</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
+    </build>
 </project>
