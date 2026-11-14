@@ -128,7 +128,9 @@ import static com.rmm.adapter.tck.TckHttpMessages.message;
  *   <li>The adapter's {@link RateLimit} and {@code http.retries} reduce the retries only through
  *       {@link Settings#forRateLimit} and {@link Settings#forConnection} (the TCK's context applies both).</li>
  *   <li>The connect timeout is fixed ({@link Settings#CONNECT_TIMEOUT}).</li>
- *   <li>The JDK client cannot reach host names with an underscore.</li>
+ *   <li>The JDK client cannot reach every host name the contract allows: not one with an underscore, with a
+ *       label that starts or ends with a hyphen, or with a last label that starts with a digit and is no IPv4
+ *       address.</li>
  *   <li>All bindings share one client with its own threads ({@code rmm-tck-http-<n>} and the JDK's
  *       {@code SelectorManager}), comparable to the event loop threads of the host's HTTP client; case 4 does not
  *       count them.</li>
@@ -561,7 +563,8 @@ public final class TckAdapterHttp implements AdapterHttp {
         } catch (IllegalArgumentException unsupported) {
             //Without the client's message: it names the whole address including the query
             throw new AdapterException(message(request, "the network path of the TCK cannot send this request"
-                    + " (host names with an underscore are not supported)"), null, false);
+                    + " (its client reaches no host name with an underscore, with a label that starts or ends with"
+                    + " a hyphen, or with a last label that starts with a digit)"), null, false);
         }
         builder.setHeader(BINDING_HEADER, stamp);
         builder.setHeader("Accept-Encoding", "gzip");

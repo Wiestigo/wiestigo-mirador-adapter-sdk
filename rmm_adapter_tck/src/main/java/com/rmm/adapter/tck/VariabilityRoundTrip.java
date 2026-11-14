@@ -38,7 +38,8 @@ final class VariabilityRoundTrip {
      * @param maxPages  the most pages per read
      */
     static Void run(AdapterInstance instance, SyncRunContext runContext,
-                    Supplier<Optional<ElementArtifact>> roundTrip, IntSupplier maxPages) throws AdapterException {
+                    Supplier<Optional<ElementArtifact>> roundTrip, IntSupplier maxPages, ReadContract.Paging paging)
+            throws AdapterException {
         TargetWriter writer = BoundInstance.writerOf(instance);
         SourceReader reader = BoundInstance.readerOf(instance);
         String externalId = writer.createArtifact(runContext, roundTrip.get().orElseThrow());
@@ -55,11 +56,11 @@ final class VariabilityRoundTrip {
             List<String> selection = List.of("RMM_TCK.BASE", "RMM_TCK.EXTRA");
             requireWritten("writeElementFeatures", writer.writeElementFeatures(runContext,
                     List.of(new ElementFeatures(externalId, selection))));
-            requireSelection(reader, runContext, externalId, selection, maxPages);
+            requireSelection(reader, runContext, externalId, selection, maxPages, paging);
             //Clearing is a statement: the element belongs to no variant
             requireWritten("writeElementFeatures", writer.writeElementFeatures(runContext,
                     List.of(new ElementFeatures(externalId, List.of()))));
-            requireSelection(reader, runContext, externalId, List.of(), maxPages);
+            requireSelection(reader, runContext, externalId, List.of(), maxPages, paging);
         } finally {
             writer.deleteArtifact(runContext, externalId);
             //The contract itself cleans up: the complete state without a tree
@@ -83,8 +84,9 @@ final class VariabilityRoundTrip {
     }
 
     private static void requireSelection(SourceReader reader, SyncRunContext runContext, String externalId,
-                                         List<String> expected, IntSupplier maxPages) throws AdapterException {
-        List<ElementFeatures> read = ReadContract.readAll("readElementFeatures",
+                                         List<String> expected, IntSupplier maxPages, ReadContract.Paging paging)
+            throws AdapterException {
+        List<ElementFeatures> read = ReadContract.readAll(paging, "readElementFeatures",
                 reader::readElementFeatures, runContext, ReadScope.ofIds(List.of(externalId)), maxPages.getAsInt())
                 .elements();
         ElementFeatures own = read.stream()

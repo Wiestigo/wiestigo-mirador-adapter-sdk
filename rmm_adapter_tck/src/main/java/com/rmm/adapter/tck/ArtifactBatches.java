@@ -39,7 +39,8 @@ final class ArtifactBatches {
      * @param maxPages  the most pages per read
      */
     static void require(AdapterInstance instance, Set<BulkOperation> declared, SyncRunContext runContext,
-                        Supplier<Optional<ElementArtifact>> roundTrip, IntSupplier maxPages) throws AdapterException {
+                        Supplier<Optional<ElementArtifact>> roundTrip, IntSupplier maxPages,
+                        ReadContract.Paging paging) throws AdapterException {
         List<String> created = new ArrayList<>();
         try {
             TargetWriter writer = BoundInstance.writerOf(instance);
@@ -68,7 +69,7 @@ final class ArtifactBatches {
                             + created);
                 }
                 Set<String> readable = new HashSet<>();
-                ReadContract.readAll("readArtifacts", reader::readArtifacts, runContext, ReadScope.full(),
+                ReadContract.readAll(paging, "readArtifacts", reader::readArtifacts, runContext, ReadScope.full(),
                         maxPages.getAsInt()).elements().forEach(artifact -> readable.add(artifact.getIdValue()));
                 if (!readable.containsAll(created)) {
                     throw new TckViolation("Elements created in a batch must be readable afterwards — missing: "

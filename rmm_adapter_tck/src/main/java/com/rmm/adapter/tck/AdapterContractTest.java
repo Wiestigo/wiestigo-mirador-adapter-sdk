@@ -950,14 +950,15 @@ public abstract class AdapterContractTest {
         ContractContext context = contractContext(descriptor, configuration());
         AdapterInstance instance = BindingLifeCycle.bind(toolAdapter, context);
         try {
-            context.inRun(runContext, () -> roundTrip(instance, runContext));
+            context.inRun(runContext, () -> roundTrip(instance, runContext, context.paging()));
         } finally {
             BindingLifeCycle.closeAndRelease(instance, context);
         }
     }
 
     /** The round trip of an artifact within one run. */
-    private Void roundTrip(AdapterInstance instance, SyncRunContext runContext) throws Exception {
+    private Void roundTrip(AdapterInstance instance, SyncRunContext runContext, ReadContract.Paging paging)
+            throws Exception {
         TargetWriter writer = BoundInstance.writerOf(instance);
         SourceReader reader = BoundInstance.readerOf(instance);
         String externalId = writer.createArtifact(runContext, roundTripArtifact().orElseThrow());
@@ -966,7 +967,7 @@ public abstract class AdapterContractTest {
                     + " Mirador stores it as the element's external reference");
         }
         try {
-            boolean found = ReadContract.readAll("readArtifacts", reader::readArtifacts,
+            boolean found = ReadContract.readAll(paging, "readArtifacts", reader::readArtifacts,
                             runContext, ReadScope.full(), maxPages())
                     .elements().stream()
                     .anyMatch(artifact -> externalId.equals(artifact.getIdValue()));
@@ -1098,7 +1099,8 @@ public abstract class AdapterContractTest {
         AdapterInstance instance = BindingLifeCycle.bind(adapter(), context);
         try {
             context.inRun(runContext,
-                    () -> VariabilityRoundTrip.run(instance, runContext, this::roundTripArtifact, this::maxPages));
+                    () -> VariabilityRoundTrip.run(instance, runContext, this::roundTripArtifact, this::maxPages,
+                            context.paging()));
         } finally {
             BindingLifeCycle.closeAndRelease(instance, context);
         }
@@ -1187,7 +1189,8 @@ public abstract class AdapterContractTest {
             AdapterInstance instance = live.instance();
             //The binding may declare fewer bulk operations than its type
             declared = BoundInstance.capabilitiesOf(adapter().descriptor(), instance).bulkOperations();
-            ArtifactBatches.require(instance, declared, runContext, this::roundTripArtifact, this::maxPages);
+            ArtifactBatches.require(instance, declared, runContext, this::roundTripArtifact, this::maxPages,
+                    live.context().paging());
         } finally {
             live.close();
         }
@@ -1245,8 +1248,8 @@ public abstract class AdapterContractTest {
                     throw new TckViolation("updateArtifact must report the accepted fields (TargetOutcome.applied)");
                 }
                 WriteOutcomes.requireWritten("updateArtifact (partial)", receipt, partial);
-                ElementArtifact readBack = ReadContract.readAll("readArtifacts", reader::readArtifacts,
-                                runContext, ReadScope.full(), maxPages())
+                ElementArtifact readBack = ReadContract.readAll(live.context().paging(), "readArtifacts",
+                                reader::readArtifacts, runContext, ReadScope.full(), maxPages())
                         .elements().stream()
                         .filter(artifact -> externalId.equals(artifact.getIdValue()))
                         .findFirst()
@@ -1311,8 +1314,8 @@ public abstract class AdapterContractTest {
                 throw new TckViolation("Deleting an element that is already gone must not fail — the host"
                         + " repeats deletes after a timeout: " + e.getMessage());
             }
-            boolean stillThere = ReadContract.readAll("readArtifacts", reader::readArtifacts, runContext,
-                            ReadScope.full(), maxPages())
+            boolean stillThere = ReadContract.readAll(live.context().paging(), "readArtifacts",
+                            reader::readArtifacts, runContext, ReadScope.full(), maxPages())
                     .elements().stream().anyMatch(artifact -> externalId.equals(artifact.getIdValue()));
             if (stillThere) {
                 throw new TckViolation("The artifact <" + externalId + "> is still readable after deletion");
@@ -1367,8 +1370,8 @@ public abstract class AdapterContractTest {
                     }
                     WriteOutcomes.requireWritten("updateArtifact (parallel)", outcome, null);
                 }
-                ElementArtifact readBack = ReadContract.readAll("readArtifacts", reader::readArtifacts,
-                                runContext, ReadScope.full(), maxPages())
+                ElementArtifact readBack = ReadContract.readAll(live.context().paging(), "readArtifacts",
+                                reader::readArtifacts, runContext, ReadScope.full(), maxPages())
                         .elements().stream().filter(artifact -> externalId.equals(artifact.getIdValue()))
                         .findFirst().orElseThrow(() -> new TckViolation("The artifact <" + externalId
                                 + "> vanished under parallel updates"));
@@ -1453,8 +1456,8 @@ public abstract class AdapterContractTest {
                     ReadContract.readAll(live.context().paging(), "readArtifacts", reader::readArtifacts, runContext,
                             ReadScope.full(), maxPages());
                     Set<String> readable = new HashSet<>();
-                    ReadContract.readAll("readRelationships", reader::readRelationships, runContext,
-                            ReadScope.full(), maxPages()).elements()
+                    ReadContract.readAll(live.context().paging(), "readRelationships",
+                            reader::readRelationships, runContext, ReadScope.full(), maxPages()).elements()
                             .forEach(relationship -> readable.add(relationship.getIdValue()));
                     if (readable.contains(finalLinkId)) {
                         throw new TckViolation("The deleted link <" + finalLinkId
