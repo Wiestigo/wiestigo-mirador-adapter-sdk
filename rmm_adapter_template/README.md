@@ -18,12 +18,18 @@ The full guide is `docs/DEVELOPER_GUIDE.md` in the SDK repository.
 
 ## Build and test
 
-Install the SDK into your local Maven repository once. In a checkout of the
-SDK, with any JDK from 17:
+The template needs the SDK artifacts in a Maven repository. Either build the
+SDK from source once, in a checkout of the SDK with any JDK from 17:
 
 ```bash
 mvn install
 ```
+
+or take the released packages: add the package repository of the SDK to the
+`pom.xml` of your copy and a token to your `settings.xml`, as the README of
+the SDK repository describes under "Getting the SDK". The property
+`rmm.adapter.api.version` in the `pom.xml` names the SDK version; the copy in
+the zip of a release already carries the version of that release.
 
 After that the template, and every copy of it, builds on its own:
 
