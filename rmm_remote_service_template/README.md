@@ -57,7 +57,10 @@ and response; the JDK system properties `sun.net.httpserver.maxReqTime` and
 The TCK is `com.wiestigo.mirador:rmm_remote_tck:1.1.0`, scope `test`. In a
 checkout of the SDK, run `mvn install` once with any JDK from 17; it puts the
 TCK and its parent `com.wiestigo.mirador:rmm_adapter_sdk` into your local
-Maven repository. In your copy, replace the parent of the module with your own
+Maven repository. Instead of building the SDK you can take the released
+packages (the README of the SDK repository, "Getting the SDK"); the version
+is then the number of the release, not `1.1.0`. In your copy, replace the
+parent of the module with your own
 versions (compiler release 17, Surefire 3.x, JUnit 6 or 5.x), set the version
 of the TCK dependency (the template uses `${project.version}`) and run
 `mvn test`. The main code needs only the JDK.

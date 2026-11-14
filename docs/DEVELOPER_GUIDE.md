@@ -48,7 +48,8 @@ plugin, section 13 the remote service.
 
 Copy `rmm_adapter_template/` and follow its README: rename `groupId` and `artifactId`, replace
 `CsvToolAdapter`, and update the service file. The template has no parent POM and builds on its own once the
-SDK artifacts are in your Maven repository (`mvn install` in the SDK).
+SDK artifacts are in a Maven repository you can reach: your local one after `mvn install` in the SDK, or the
+package repository of the SDK (see "Getting the SDK" in the README of the SDK repository).
 
 - **Dependencies:** `com.wiestigo.mirador:rmm_adapter_api:1.1.0` in scope `provided` and
   `com.wiestigo.mirador:rmm_adapter_tck:1.1.0` in scope `test`. The host supplies the contract at run time; it
