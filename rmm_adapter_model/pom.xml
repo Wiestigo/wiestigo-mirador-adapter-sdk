@@ -29,9 +29,9 @@
 
     <dependencies>
         <!--
-            ElementFieldJson carries its value as a JsonNode, and the reader of the mapping file
-            reads JSON (Jackson 3); the version comes from the Spring Boot BOM. A plugin does not
-            see the host's Jackson and sets the value of a JSON field as text.
+            ElementFieldJson checks and compacts its JSON text, and the reader of the mapping file
+            reads JSON (Jackson 3); the version comes from the Spring Boot BOM. No type of Jackson
+            appears in the transfer model: a JSON field carries its value as text.
         -->
         <dependency>
             <groupId>tools.jackson.core</groupId>
