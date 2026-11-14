@@ -164,3 +164,10 @@ Mirador shows a notice 30 days before the service certificate expires.
 `tls.trust` may hold several certificates: the administrator adds the new
 service certificate, then you replace the key store and restart the service,
 and finally the administrator removes the old certificate from `tls.trust`.
+
+## License
+
+This template is licensed under MIT No Attribution (MIT-0), see `LICENSE`:
+use it as the starting point of your own project without keeping a copyright
+notice, and license your project as you like. The TCK its tests use
+(`rmm_remote_tck`) is licensed under the Apache License 2.0.

@@ -71,3 +71,16 @@ Mirador supplies the contract at run time, so it does not belong in your jar
 The SDK version follows the contract: `1.1.x` is contract major 1, minor 1.
 Inside a major version, changes stay backward compatible; the developer guide
 states the rules in its section on versioning.
+
+## License
+
+The SDK is licensed under the [Apache License, Version 2.0](LICENSE),
+Copyright 2026 Wiestigo UG (haftungsbeschränkt); see also [NOTICE](NOTICE).
+
+The two templates, `rmm_adapter_template` and `rmm_remote_service_template`,
+are licensed under MIT No Attribution (MIT-0), see their `LICENSE` files
+([adapter](rmm_adapter_template/LICENSE),
+[remote service](rmm_remote_service_template/LICENSE)): copy them and build your adapter or service on them without keeping a
+copyright notice, and license the result as you like.
+
+The license grants no rights to the names "Wiestigo" and "Mirador".

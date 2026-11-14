@@ -135,3 +135,10 @@ The adapter reads and writes in the terms of the tool: its identifiers, its
 type names, its field names. Mirador does the rest: mapping to its own types
 and attributes, idempotency, batching, building the hierarchy, change
 detection, parallel execution, progress and administration.
+
+## License
+
+This template is licensed under MIT No Attribution (MIT-0), see `LICENSE`:
+use it as the starting point of your own project without keeping a copyright
+notice, and license your project as you like. The SDK it builds on
+(`rmm_adapter_api`, the TCKs) is licensed under the Apache License 2.0.
