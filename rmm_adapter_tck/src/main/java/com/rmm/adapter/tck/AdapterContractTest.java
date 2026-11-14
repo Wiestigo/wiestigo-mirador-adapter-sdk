@@ -509,7 +509,7 @@ public abstract class AdapterContractTest {
             "http://evil.example/a.png", "https://evil.example/a.png", "javascript:alert(1)",
             "data:image/png;base64,AAAA", "vbscript:msgbox(1)", "file:///etc/passwd", "blob:https://x/1",
             "//evil.example/a.png", "/../api/a.png", "/a/../../api/a.png", "/%2e%2e/a.png", "/api/a.png",
-            "/api/attachment/1/a.png", "/actuator/a.png", "/internal/attachment/1/a.png", "/identity/a.png");
+            "/api/attachment/1/a.png", "/API/a.png", "/Api/attachment/1/a.png");
 
     /**
      * Image reference forms (since contract 1.1): every declared form keeps
