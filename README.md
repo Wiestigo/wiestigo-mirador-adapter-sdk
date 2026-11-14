@@ -123,6 +123,12 @@ the patch number counts the releases of that contract.
 Inside a major version, changes stay backward compatible; the developer guide
 states the rules in its section on versioning.
 
+## Contributing and security
+
+Contributions are welcome; [CONTRIBUTING.md](CONTRIBUTING.md) says how.
+Report a suspected vulnerability as [SECURITY.md](SECURITY.md) describes, not
+in a public issue.
+
 ## License
 
 The SDK is licensed under the [Apache License, Version 2.0](LICENSE),
