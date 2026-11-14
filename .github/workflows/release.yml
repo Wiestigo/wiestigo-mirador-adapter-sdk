@@ -1,60 +1,157 @@
 name: Release
 
-# Publishes the SDK artifacts to the GitHub Packages of this repository: the parent module with the zip
-# of the templates, the transfer model, the contract, the Spring facade and both TCKs, each with sources.
-# The templates themselves are built and tested but not published: they are projects to copy (in the
-# zip), not libraries.
+# A new release, started by hand: Actions -> Release -> "Run workflow" on main, with the version as
+# input (1.1.0 or v1.1.0). No tag by hand, and no version to edit in a pom.xml first.
 #
-# Runs manually or on a tag v<version>. The version is set in pom.xml; GitHub Packages does not allow
-# overwriting a published version (409), so raise the version for a new release.
+#   check     The version is MAJOR.MINOR.PATCH, MAJOR.MINOR is the contract version in
+#             AdapterApiVersion, the run was started on main, and neither a tag nor a release
+#             with this version exists. Everything after that runs on GITHUB_SHA, the commit of
+#             main at the start.
+#   tests     The Build workflow on exactly this commit: all tests on JDK 17 and JDK 25.
+#   publish   Only when the tests are green: sets the version in every pom.xml of the working
+#             copy (not in the repository), builds and tests once more with that version, and
+#             uploads the artifacts to the GitHub Packages of this repository: the parent module
+#             with the zip of the templates, the transfer model, the contract, the Spring facade
+#             and both TCKs, each with sources. The templates are built and tested but not
+#             published: they are projects to copy (in the zip), not libraries.
+#   release   Last: the tag v<version> on GITHUB_SHA and the GitHub release with the zip of the
+#             templates, in one step.
+#
+# So a tag exists only for a published version. The pom.xml files in the repository keep the
+# number of the contract line (MAJOR.MINOR.0): it is what a local build produces.
+#
+# If something fails: "Re-run failed jobs" in the same run (what is green stays green). GitHub
+# Packages does not allow overwriting a published version (409); if publish failed after a part
+# of the artifacts was uploaded, release the next patch version instead. A published tag is never
+# moved.
 
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - 'v*'
+    inputs:
+      version:
+        description: 'Version to release, for example 1.1.0 (MAJOR.MINOR.PATCH, a leading v is allowed)'
+        required: true
+        type: string
 
+permissions: {}
+
+# One release after the other; a second start waits instead of cancelling the first
 concurrency:
   group: release
   cancel-in-progress: false
 
 jobs:
-  release:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Check the version
+      id: version
+      env:
+        GH_TOKEN: ${{ github.token }}
+        INPUT: ${{ inputs.version }}
+      run: .github/scripts/check-release-version.sh "$INPUT"
+
+  # All tests on exactly this commit. A job that calls a workflow carries no timeout-minutes; the
+  # jobs in it carry their own.
+  tests:
+    needs: check
+    permissions:
+      contents: read
+    uses: ./.github/workflows/build.yml
+
+  publish:
+    needs: [check, tests]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
       contents: read
       packages: write
-
+    env:
+      VERSION: ${{ needs.check.outputs.version }}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # On JDK 17: the artifacts are then certain to be Java 17, even if a module lost its release setting
+    # On JDK 17: the artifacts are then certain to be Java 17, even if a module lost its release
+    # setting. Without a cache: a release builds from what Maven Central delivers, not from what an
+    # earlier run left behind.
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'corretto'
-        cache: maven
         server-id: github
         server-username: GITHUB_ACTOR
         server-password: GITHUB_TOKEN
 
-    - name: The tag names the version of the build
-      if: startsWith(github.ref, 'refs/tags/v')
+    # In the working copy only. The adapter template is a project of its own and names the SDK
+    # version in a property.
+    - name: Set the version
       run: |
-        version=$(mvn -B -q -N help:evaluate -Dexpression=project.version -DforceStdout)
-        if [ "v$version" != "$GITHUB_REF_NAME" ]; then
-          echo "tag $GITHUB_REF_NAME does not match the version $version in pom.xml" >&2
-          exit 1
-        fi
+        mvn -B -q org.codehaus.mojo:versions-maven-plugin:2.18.0:set \
+          -DnewVersion="$VERSION" -DgenerateBackupPoms=false
+        mvn -B -q -f rmm_adapter_template/pom.xml org.codehaus.mojo:versions-maven-plugin:2.18.0:set-property \
+          -Dproperty=rmm.adapter.api.version -DnewVersion="$VERSION" -DgenerateBackupPoms=false
+        git diff --stat
 
-    # Build and test everything first, including the templates; upload only after that
+    # Build and test everything with the version, including the templates; upload only after that
     - name: Build and test
       run: mvn -B verify
 
+    # All uploads at the end of the build, so that a failing module leaves nothing published
     - name: Publish to GitHub Packages
-      run: mvn -B deploy -DskipTests -pl '!rmm_adapter_template,!rmm_remote_service_template'
+      run: >-
+        mvn -B deploy -DskipTests -DdeployAtEnd=true
+        -pl '!rmm_adapter_template,!rmm_remote_service_template'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Keep the zip of the templates for the release
+      uses: actions/upload-artifact@v4
+      with:
+        name: templates
+        path: target/rmm_adapter_sdk-${{ env.VERSION }}-templates.zip
+        if-no-files-found: error
+        retention-days: 7
+
+  release:
+    needs: [check, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write   # the tag and the GitHub release
+    env:
+      VERSION: ${{ needs.check.outputs.version }}
+    steps:
+    - name: Fetch the zip of the templates
+      uses: actions/download-artifact@v4
+      with:
+        name: templates
+        path: release
+
+    # The tag and the release in one step, the tag on GITHUB_SHA (--target)
+    - name: Create the tag and the GitHub release
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        {
+          echo "Wiestigo Mirador Adapter SDK $VERSION, commit $GITHUB_SHA."
+          echo
+          echo "Artifacts in the GitHub Packages of this repository, group id \`com.wiestigo.mirador\`,"
+          echo "version \`$VERSION\`: \`rmm_adapter_model\`, \`rmm_adapter_api\`, \`rmm_adapter_http_spring\`,"
+          echo "\`rmm_adapter_tck\`, \`rmm_remote_tck\`, each with sources."
+          echo
+          echo "The attached zip holds the adapter template and the remote service template as projects"
+          echo "to copy."
+        } > notes.md
+        gh release create "v$VERSION" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+          --title "Wiestigo Mirador Adapter SDK $VERSION" --notes-file notes.md \
+          "release/rmm_adapter_sdk-$VERSION-templates.zip"

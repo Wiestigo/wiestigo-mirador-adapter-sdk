@@ -26,6 +26,11 @@
 
     <groupId>com.wiestigo.mirador</groupId>
     <artifactId>rmm_adapter_sdk</artifactId>
+    <!--
+        The number of the contract line (MAJOR.MINOR.0): what a local build produces. A release
+        gets its version (MAJOR.MINOR.PATCH) from the Release workflow, which sets it in every
+        pom.xml of its working copy.
+    -->
     <version>1.1.0</version>
     <packaging>pom</packaging>
 
